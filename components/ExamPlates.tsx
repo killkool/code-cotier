@@ -311,6 +311,8 @@ export function DayMarksPlate({ caption }: PlateProps) {
   );
 }
 
+import { vocabPlates } from "./VocabPlates";
+
 export const examPlates = {
   "collision-head-on": CollisionHeadOn,
   "collision-crossing": CollisionCrossing,
@@ -322,6 +324,7 @@ export const examPlates = {
   "cardinals": CardinalSchematic,
   "port-traffic": PortTrafficPlate,
   "day-marks": DayMarksPlate,
+  ...vocabPlates,
 };
 
 export type ExamPlateId = keyof typeof examPlates;

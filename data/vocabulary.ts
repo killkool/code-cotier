@@ -1,3 +1,5 @@
+import type { ExamPlateId } from "./course";
+
 export type VocabCategoryId =
   | "bord"
   | "unites"
@@ -18,6 +20,11 @@ export type LexiconTerm = {
   definition: string;
   exam?: string;
   chapterId?: string;
+  colorHint?: "red" | "green";
+  image?: string;
+  imageAlt?: string;
+  imageCaption?: string;
+  plate?: ExamPlateId;
 };
 
 export const vocabCategories: { id: VocabCategoryId; label: string; hint: string }[] = [
@@ -33,22 +40,26 @@ export const vocabCategories: { id: VocabCategoryId; label: string; hint: string
   { id: "port", label: "Port, plage et trafic", hint: "300 m, pictogrammes, écluse…" },
 ];
 
-export const lexicon: LexiconTerm[] = [
+const lexiconEntries: LexiconTerm[] = [
   {
     id: "babord",
     term: "Bâbord",
+    aliases: ["babor", "port", "gauche"],
     category: "bord",
     chapterId: "balisage",
-    definition: "Côté gauche du navire quand on regarde vers l'avant. Feu de côté rouge. En région A, en entrant dans un chenal, la marque bâbord est rouge.",
-    exam: "Ne pas confondre avec « à gauche de l'observateur » : on se place toujours dans l'axe du bateau, regard vers la proue.",
+    colorHint: "red",
+    definition: "Côté gauche du navire quand on se tient à bord, le regard vers l'avant (la proue). Couleur associée : rouge (feu de côté et marque latérale région A). Ce n'est pas « la gauche de la photo » si le bateau vient vers toi : on inverse alors, comme face à quelqu'un.",
+    exam: "Pour ne pas inverser : imagine-toi au volant, nez vers l'avant. Gauche = bâbord = rouge. En région A, en entrant au port, on laisse le rouge à bâbord.",
   },
   {
     id: "tribord",
     term: "Tribord",
+    aliases: ["starboard", "droite"],
     category: "bord",
     chapterId: "balisage",
-    definition: "Côté droit du navire quand on regarde vers l'avant. Feu de côté vert. En région A, en entrant, la marque tribord est verte.",
-    exam: "Face à face : chacun vient sur tribord pour se croiser bâbord contre bâbord.",
+    colorHint: "green",
+    definition: "Côté droit du navire quand on se tient à bord, le regard vers l'avant (la proue). Couleur associée : vert (feu de côté et marque latérale région A). Face à un bateau qui vient vers toi, son tribord est à ta gauche — d'où la confusion avec la droite et la gauche.",
+    exam: "Nez vers l'avant : droite = tribord = vert. Face à face, chacun vient sur tribord pour se croiser bâbord contre bâbord.",
   },
   {
     id: "proue",
@@ -742,6 +753,41 @@ export const lexicon: LexiconTerm[] = [
     category: "port",
     chapterId: "balisage",
     definition: "Panneaux normalisés indiquant à terre les activités autorisées ou interdites (baignade, navires, ski nautique, planche, etc.). Ils complètent les bouées jaunes de zone de baignade et les chenaux.",
+    exam: "Un symbole barré d'une bande rouge = activité interdite. L'absence de pictogramme ne veut pas dire que tout est permis : l'arrêté local et le balisage priment.",
+  },
+  {
+    id: "bouees-jaunes-plage",
+    term: "Bouées jaunes de plage",
+    aliases: ["bouées jaunes", "zone de baignade"],
+    category: "port",
+    chapterId: "balisage",
+    definition: "Bouées sphériques jaunes qui délimitent souvent la zone de baignade près du rivage. Les navires à moteur n'y circulent pas, sauf le chenal d'accès prévu. Ce n'est pas une marque spéciale AISM du large.",
+    exam: "Le contexte plage / 300 m change la lecture : une bouée jaune de baignade n'est pas une marque spéciale du large.",
+  },
+  {
+    id: "pavillons-plage",
+    term: "Pavillons de baignade",
+    aliases: ["pavillon vert", "pavillon rouge", "pavillon jaune", "pavillon violet"],
+    category: "port",
+    chapterId: "balisage",
+    definition: "Drapeaux du poste de secours : vert = baignade surveillée sans danger apparent ; jaune / orange = baignade dangereuse mais surveillée ; rouge = baignade interdite ; violet = pollution / baignade déconseillée.",
+    exam: "Ne pas confondre le pavillon rouge de plage (baignade interdite) avec un feu rouge de trafic portuaire.",
+  },
+  {
+    id: "manche-air-orange",
+    term: "Manche à air orange",
+    aliases: ["manche à air"],
+    category: "port",
+    chapterId: "balisage",
+    definition: "Signal de plage indiquant un vent fort : les engins de plage gonflables (matelas, bouées) sont interdits.",
+  },
+  {
+    id: "engins-de-plage",
+    term: "Engins de plage",
+    aliases: ["pédalo", "engin de plage"],
+    category: "port",
+    chapterId: "balisage",
+    definition: "Embarcations non motorisées utilisées près du rivage (pédalo, kayak, annexes légères). Elles restent en général dans la zone qui leur est réservée et hors du chenal s'il est réservé aux autres engins.",
   },
   {
     id: "aussiere",
@@ -815,6 +861,122 @@ export const lexicon: LexiconTerm[] = [
     definition: "Personne tombée à l'eau. Réflexes : ne pas la perdre des yeux, alerter, lancer un objet flottant, manœuvrer pour récupérer sans exposer à l'hélice, MAYDAY si la situation l'exige. D'où la bouée de récupération en armement côtier.",
   },
 ];
+
+const lexiconVisuals: Record<string, Pick<LexiconTerm, "image" | "imageAlt" | "imageCaption" | "plate">> = {
+  babord: {
+    image: "/images/vocab-babord.png?v=2",
+    imageAlt: "Bateau vu de son côté gauche : il avance vers la gauche, feu et pare-battages rouges. C'est le bâbord.",
+    imageCaption: "Il avance vers la gauche : on voit son côté gauche. Bâbord = rouge.",
+    plate: "boat-babord",
+  },
+  tribord: {
+    image: "/images/vocab-tribord.png?v=2",
+    imageAlt: "Bateau vu de son côté droit : il avance vers la droite, feu et pare-battages verts. C'est le tribord.",
+    imageCaption: "Il avance vers la droite : on voit son côté droit. Tribord = vert.",
+    plate: "boat-tribord",
+  },
+  proue: { image: "/images/vocab-proue.png", imageAlt: "Proue d'un bateau de plaisance, étrave qui fend l'eau.", plate: "boat-proue" },
+  poupe: { image: "/images/vocab-poupe.png", imageAlt: "Poupe d'un bateau, plateforme arrière et moteurs.", plate: "boat-poupe" },
+  travers: { image: "/images/vocab-travers.png", imageAlt: "Bateau vu par le travers, profil complet.", plate: "boat-travers" },
+  amures: { image: "/images/vocab-amures.png", imageAlt: "Voilier dont le bôme est porté d'un bord : les amures sont le côté du vent.", plate: "amures" },
+  "au-vent": { image: "/images/vocab-au-vent.png", imageAlt: "Deux voiliers sur le même bord : au vent et sous le vent.", plate: "au-vent" },
+  cap: { plate: "cap-route" },
+  route: { plate: "cap-route" },
+  relevement: { image: "/images/vocab-relevement.png", imageAlt: "Skipper prenant un relèvement au compas vers un phare.", plate: "gisement" },
+  gisement: { plate: "gisement" },
+  erre: { image: "/images/vocab-proue.png", imageAlt: "Bateau encore en mouvement dans l'eau.", plate: "cap-route" },
+  derive: { plate: "cap-route" },
+  mille: { image: "/images/carte-maree.jpg", imageAlt: "Carte marine : les distances se mesurent sur l'échelle des latitudes." },
+  noeud: { image: "/images/picto-vitesse-5-noeuds.jpg", imageAlt: "Limitation à 5 nœuds près du littoral." },
+  aism: { plate: "region-a" },
+  "region-a": { image: "/images/mark-babord-a.jpg", imageAlt: "Marque latérale rouge de région A.", plate: "region-a" },
+  "region-b": { plate: "region-b" },
+  voyant: { image: "/images/mark-cardinale-nord.jpg", imageAlt: "Voyant de cardinale Nord : deux cônes noirs pointes vers le haut." },
+  "feu-balise": { image: "/images/mark-babord-a.jpg", imageAlt: "Marque latérale dont le feu de nuit a la couleur de la marque." },
+  eclat: { plate: "light-rhythms" },
+  scintillement: { plate: "light-rhythms" },
+  occultation: { plate: "light-rhythms" },
+  isophase: { plate: "light-rhythms" },
+  chenal: { image: "/images/plage-chenal-acces.jpg", imageAlt: "Chenal d'accès balisé rouge et vert." },
+  "chenal-prefere": { image: "/images/mark-chenal-prefere-tribord.jpg", imageAlt: "Marque de chenal préféré : rouge avec une bande verte." },
+  "danger-isole": { image: "/images/mark-danger-isole.jpg", imageAlt: "Marque de danger isolé, noire à bande rouge, deux boules." },
+  "eaux-saines": { image: "/images/mark-eaux-saines.jpg", imageAlt: "Marque d'eaux saines à rayures verticales rouge et blanc." },
+  "marque-speciale": { image: "/images/mark-speciale.jpg", imageAlt: "Marque spéciale jaune, voyant en X." },
+  cardinale: { image: "/images/mark-cardinale-nord.jpg", imageAlt: "Marque cardinale Nord, noir sur jaune.", plate: "cardinals" },
+  atterrissage: { image: "/images/mark-eaux-saines.jpg", imageAlt: "Marque d'eaux saines, souvent utilisée à l'atterrissage." },
+  amer: { image: "/images/vocab-relevement.png", imageAlt: "Phare servant d'amer pour un relèvement." },
+  ripam: { plate: "collision-head-on" },
+  abordage: { plate: "collision-crossing" },
+  "vitesse-securite": { image: "/images/picto-vitesse-5-noeuds.jpg", imageAlt: "Vitesse limitée près du rivage." },
+  "navire-privilegie": { plate: "collision-crossing" },
+  rattrapage: { plate: "collision-overtaking" },
+  "pare-clair": { plate: "collision-overtaking" },
+  "face-a-face": { image: "/images/feux-face-a-face.jpg", imageAlt: "Navire à moteur vu de face de nuit.", plate: "collision-head-on" },
+  croisement: { plate: "collision-crossing" },
+  "non-maitre": { image: "/images/feux-non-maitre.jpg", imageAlt: "Deux feux rouges superposés : non maître de sa manœuvre." },
+  "manoeuvre-restreinte": { image: "/images/feux-manoeuvre-restreinte.jpg", imageAlt: "Feux rouge-blanc-rouge : capacité de manœuvre restreinte." },
+  "tirant-eau-contraint": { plate: "lights-constrained" },
+  "en-route": { image: "/images/vocab-travers.png", imageAlt: "Navire faisant route, ni à l'ancre ni amarré." },
+  "battre-arriere": { plate: "sounds" },
+  "zero-hydro": { image: "/images/carte-maree.jpg", imageAlt: "Carte marine et documents de marée.", plate: "tide-levels" },
+  sonde: { plate: "tide-levels" },
+  "hauteur-eau": { plate: "tide-levels" },
+  "tirant-eau": { plate: "tide-levels" },
+  marnage: { plate: "tide-levels" },
+  coefficient: { image: "/images/carte-maree.jpg", imageAlt: "Annuaire des marées et carte marine.", plate: "tide-levels" },
+  "vive-eau": { plate: "tide-levels" },
+  "flot-jusant": { plate: "tide-levels" },
+  latitude: { image: "/images/carte-maree.jpg", imageAlt: "Carte marine : latitude et longitude." },
+  abri: { image: "/images/vocab-mouillage.png", imageAlt: "Bateau à l'abri, au mouillage dans une baie." },
+  "division-240": { image: "/images/materiel-securite.jpg", imageAlt: "Matériel d'armement et de sécurité." },
+  eif: { image: "/images/materiel-securite.jpg", imageAlt: "Équipements individuels de flottabilité et matériel de sécurité." },
+  "armement-basique": { image: "/images/materiel-securite.jpg", imageAlt: "Matériel d'armement basique." },
+  "armement-cotier": { image: "/images/materiel-securite.jpg", imageAlt: "Matériel d'armement côtier." },
+  "pavillon-alpha": { image: "/images/pavillon-alpha.jpg", imageAlt: "Pavillon Alpha, blanc et bleu à queue d'aronde." },
+  "bande-300": { image: "/images/picto-vitesse-5-noeuds.jpg", imageAlt: "Panneau 5 nœuds dans la bande des 300 mètres." },
+  vhf: { image: "/images/vhf-asn.jpg", imageAlt: "Poste VHF marine." },
+  "canal-16": { image: "/images/vhf-asn.jpg", imageAlt: "VHF : le canal 16 est le canal vocal de détresse et d'appel." },
+  "canal-70": { image: "/images/vhf-asn.jpg", imageAlt: "VHF ASN : le canal 70 est réservé à l'ASN, jamais la voix." },
+  asn: { image: "/images/vhf-asn.jpg", imageAlt: "VHF avec appel sélectif numérique." },
+  mmsi: { image: "/images/vhf-asn.jpg", imageAlt: "Identifiant MMSI programmé dans la VHF." },
+  mayday: { image: "/images/detresse-fusee.jpg", imageAlt: "Feu ou fusée rouge de détresse." },
+  "pan-pan": { image: "/images/vhf-asn.jpg", imageAlt: "Appel d'urgence en VHF." },
+  "securite-msg": { image: "/images/vhf-asn.jpg", imageAlt: "Message de sécurité en VHF." },
+  smdsm: { image: "/images/vhf-asn.jpg", imageAlt: "VHF ASN, maillon côtier du SMDSM." },
+  "zone-a1": { image: "/images/vhf-asn.jpg", imageAlt: "Couverture VHF ASN de la zone A1." },
+  cross: { image: "/images/vhf-asn.jpg", imageAlt: "Alerte des secours en mer via VHF ou 196." },
+  "196": { image: "/images/vhf-asn.jpg", imageAlt: "Le 196 complète la VHF canal 16." },
+  rls: { image: "/images/detresse-fusee.jpg", imageAlt: "Moyens de détresse et de localisation." },
+  crr: { image: "/images/vhf-asn.jpg", imageAlt: "VHF marine : un CRR est en général exigé." },
+  distress: { image: "/images/vhf-asn.jpg", imageAlt: "Touche DISTRESS d'une VHF ASN." },
+  beaufort: { image: "/images/meteo-beaufort.jpg", imageAlt: "Mer formée, illustration de la force du vent." },
+  rafale: { image: "/images/meteo-beaufort.jpg", imageAlt: "Mer dure, rafales." },
+  houle: { image: "/images/meteo-beaufort.jpg", imageAlt: "Mer du large et houle." },
+  "visibilite-reduite": { plate: "sounds" },
+  "permis-cotier": { image: "/images/permis-conduite.jpg", imageAlt: "Permis de conduire les bateaux de plaisance." },
+  "titre-navigation": { image: "/images/permis-conduite.jpg", imageAlt: "Documents du navire et du conducteur." },
+  "documents-nautiques": { image: "/images/carte-maree.jpg", imageAlt: "Cartes marines et documents nautiques." },
+  "trafic-portuaire": { plate: "port-traffic" },
+  "chenal-traversier": { image: "/images/plage-chenal-acces.jpg", imageAlt: "Chenal traversier vu depuis la mer, rouge à bâbord et vert à tribord." },
+  pictogramme: { image: "/images/picto-baignade-interdite.jpg", imageAlt: "Pictogramme de plage : nageur barré d'une bande rouge." },
+  "bouees-jaunes-plage": { image: "/images/plage-bouees-jaunes.jpg", imageAlt: "Ligne de bouées jaunes délimitant la baignade." },
+  "pavillons-plage": { image: "/images/plage-pavillons.jpg", imageAlt: "Pavillons de baignade au poste de secours." },
+  "manche-air-orange": { image: "/images/manche-air-orange.jpg", imageAlt: "Manche à air orange signalant un vent fort." },
+  "engins-de-plage": { image: "/images/picto-engins-plage.jpg", imageAlt: "Pictogramme d'engins de plage." },
+  aussiere: { image: "/images/ecluse.jpg", imageAlt: "Bateau à l'écluse, aussières prêtes." },
+  "pare-battage": { image: "/images/ecluse.jpg", imageAlt: "Accostage : pare-battages entre coque et quai." },
+  ecluse: { image: "/images/ecluse.jpg", imageAlt: "Écluse, feux et sas." },
+  "peche-loisir": { image: "/images/feux-peche.jpg", imageAlt: "Navire de pêche, à distinguer de la pêche de loisir." },
+  "marque-jour": { plate: "day-marks" },
+  "feu-horizon": { plate: "light-sectors" },
+  "voilier-moteur": { plate: "day-marks" },
+  "homme-a-la-mer": { image: "/images/materiel-securite.jpg", imageAlt: "Matériel de récupération d'homme à la mer." },
+};
+
+export const lexicon: LexiconTerm[] = lexiconEntries.map((item) => ({
+  ...item,
+  ...lexiconVisuals[item.id],
+}));
 
 export function searchLexicon(query: string, category?: VocabCategoryId | "all"): LexiconTerm[] {
   const q = query.trim().toLowerCase();

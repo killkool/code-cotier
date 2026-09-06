@@ -4,6 +4,12 @@ import { useEffect, useMemo, useState } from "react";
 import { allQuestions, chapters, officialProgram, type Chapter, type ExamPlateId, type LessonImage, type Question, type VocabTerm } from "@/data/course";
 import { ExamPlate } from "@/components/ExamPlates";
 import { lexicon, searchLexicon, vocabCategories, type VocabCategoryId } from "@/data/vocabulary";
+import { assetPath } from "@/lib/asset";
+import type { ImgHTMLAttributes } from "react";
+
+function AppImage({ src, ...props }: ImgHTMLAttributes<HTMLImageElement>) {
+  return <img src={assetPath(typeof src === "string" ? src : undefined)} {...props} />;
+}
 
 type View =
   | { type: "dashboard" }
@@ -66,7 +72,7 @@ function LessonMedia({ images, plate, plates }: { images?: LessonImage[]; plate?
         <div className={images.length > 1 ? "figure-grid" : "figure-single"}>
           {images.map((img) => (
             <figure className="lesson-figure" key={img.src}>
-              <img src={img.src} alt={img.alt} />
+              <AppImage src={img.src} alt={img.alt} />
               <figcaption>{img.caption}</figcaption>
             </figure>
           ))}
@@ -83,7 +89,7 @@ function QuestionVisual({ question }: { question: Question }) {
       {question.plate && <ExamPlate id={question.plate} caption="" />}
       {question.image && (
         <figure className="quiz-figure">
-          <img src={question.image} alt={question.imageAlt ?? "Illustration de la question"} />
+          <AppImage src={question.image} alt={question.imageAlt ?? "Illustration de la question"} />
         </figure>
       )}
     </div>
@@ -92,25 +98,29 @@ function QuestionVisual({ question }: { question: Question }) {
 
 function BeachPictograms() {
   const items = [
-    { id: "swim", title: "Baignade", note: "Zone souvent limitée par des bouées jaunes. Pictogramme nageur : activité de baignade." },
-    { id: "noswim", title: "Baignade interdite", note: "Nageur barré d'une bande rouge : on ne nage pas, même si l'eau est calme." },
-    { id: "channel", title: "Chenal d'accès", note: "Couloir pour les engins. Baignade interdite dans le chenal." },
-    { id: "noboat", title: "Navires interdits", note: "Bateau barré : pas de moteur dans le secteur (souvent la baignade)." },
-    { id: "noski", title: "Ski interdit", note: "Skieur barré : activité tractée hors zone, hors horaires." },
-    { id: "info", title: "Affichage local", note: "Les pictogrammes du poste de secours et l'arrêté priment." },
+    { src: "/images/plage-bouees-jaunes.jpg", title: "Bouées jaunes", note: "Limite de la zone de baignade. Les navires à moteur n'y circulent pas, sauf le chenal prévu." },
+    { src: "/images/plage-chenal-acces.jpg", title: "Chenal traversier", note: "Depuis la mer : rouge à bâbord, vert à tribord. Baignade interdite dans le couloir." },
+    { src: "/images/picto-baignade-surveillee.jpg", title: "Baignade surveillée", note: "Pictogramme bleu, nageur blanc. Activité de baignade autorisée / surveillée." },
+    { src: "/images/picto-baignade-interdite.jpg", title: "Baignade interdite", note: "Nageur barré d'une bande rouge : on ne nage pas, même si l'eau est calme." },
+    { src: "/images/picto-engins-plage.jpg", title: "Engins de plage", note: "Zone réservée aux engins non motorisés (pédalo, kayak, annexes de plage)." },
+    { src: "/images/picto-navires-interdits.jpg", title: "Navires interdits", note: "Bateau barré : pas de moteur dans le secteur (souvent la baignade)." },
+    { src: "/images/picto-ski-interdit.jpg", title: "Ski / tractés interdits", note: "Skieur barré : activité tractée hors zone, hors horaires, hors chenal." },
+    { src: "/images/picto-planche-voile.jpg", title: "Planche à voile", note: "Pictogramme bleu : secteur réservé ou activité autorisée." },
+    { src: "/images/picto-kitesurf.jpg", title: "Kitesurf", note: "Secteur réservé. Hors de la baignade et hors du chenal traversier." },
+    { src: "/images/picto-jetski-interdit.jpg", title: "Jet-ski interdit", note: "Engin motorisé barré : pas dans la baignade ni près des nageurs." },
+    { src: "/images/picto-vitesse-5-noeuds.jpg", title: "5 nœuds / 300 m", note: "Bande littorale : 5 nœuds en règle générale, hors chenaux et arrêtés locaux." },
+    { src: "/images/plage-pavillons.jpg", title: "Pavillons de plage", note: "Vert : surveillée. Jaune : dangereuse. Rouge : interdite. Violet : pollution." },
+    { src: "/images/pavillon-vert-plage.jpg", title: "Pavillon vert", note: "Baignade surveillée, pas de danger apparent." },
+    { src: "/images/pavillon-jaune-plage.jpg", title: "Pavillon jaune", note: "Baignade dangereuse, mais encore surveillée." },
+    { src: "/images/pavillon-rouge-plage.jpg", title: "Pavillon rouge", note: "Baignade interdite. On ne nage pas." },
+    { src: "/images/pavillon-violet-plage.jpg", title: "Pavillon violet", note: "Pollution : baignade déconseillée / interdite selon l'affichage." },
+    { src: "/images/manche-air-orange.jpg", title: "Manche à air orange", note: "Vent fort : engins gonflables de plage interdits." },
   ];
   return (
     <div className="pictogram-grid" aria-label="Pictogrammes de plage">
       {items.map((item) => (
-        <article className="pictogram-card" key={item.id}>
-          <div className={`pictogram-icon ${item.id}`} aria-hidden="true">
-            {item.id === "swim" && <span>🏊</span>}
-            {item.id === "noswim" && <span className="barred">🏊</span>}
-            {item.id === "channel" && <span>↕</span>}
-            {item.id === "noboat" && <span className="barred">⛵</span>}
-            {item.id === "noski" && <span className="barred">🏄</span>}
-            {item.id === "info" && <span>ℹ</span>}
-          </div>
+        <article className="pictogram-card photo" key={item.src}>
+          <AppImage src={item.src} alt={item.title} />
           <strong>{item.title}</strong>
           <span>{item.note}</span>
         </article>
@@ -135,15 +145,20 @@ function BuoyGallery() {
     { src: "/images/mark-babord-a.jpg", name: "Bâbord", note: "Rouge • cylindre" },
     { src: "/images/mark-tribord-a.jpg", name: "Tribord", note: "Vert • cône" },
     { src: "/images/mark-cardinale-nord.jpg", name: "Cardinale Nord", note: "Noir / jaune • ↑ ↑" },
+    { src: "/images/mark-cardinale-est.jpg", name: "Cardinale Est", note: "Noir / jaune / noir • ← →" },
+    { src: "/images/mark-cardinale-sud.jpg", name: "Cardinale Sud", note: "Jaune / noir • ↓ ↓" },
+    { src: "/images/mark-cardinale-ouest.jpg", name: "Cardinale Ouest", note: "Jaune / noir / jaune • → ←" },
     { src: "/images/mark-danger-isole.jpg", name: "Danger isolé", note: "Noir / rouge • ● ●" },
     { src: "/images/mark-eaux-saines.jpg", name: "Eaux saines", note: "Rouge / blanc • ●" },
     { src: "/images/mark-speciale.jpg", name: "Spéciale", note: "Jaune • X" },
+    { src: "/images/mark-chenal-prefere-babord.jpg", name: "Chenal préféré à bâbord", note: "Vert + bande rouge" },
+    { src: "/images/mark-chenal-prefere-tribord.jpg", name: "Chenal préféré à tribord", note: "Rouge + bande verte" },
   ];
   return (
     <div className="buoy-grid">
       {marks.map((mark) => (
         <div className="buoy-card photo" key={mark.name}>
-          <img src={mark.src} alt={mark.name} />
+          <AppImage src={mark.src} alt={mark.name} />
           <div>
             <strong>{mark.name}</strong>
             <span>{mark.note}</span>
@@ -218,7 +233,7 @@ function Dashboard({ progressData, setView }: { progressData: StoredProgress; se
   return (
     <>
       <section className="hero-card">
-        <img className="hero-photo" src="/images/hero-cotier.jpg" alt="Bateau de plaisance dans un chenal côtier au coucher du soleil." />
+        <AppImage className="hero-photo" src="/images/hero-cotier.jpg" alt="Bateau de plaisance dans un chenal côtier au coucher du soleil." />
         <div className="hero-copy">
           <span className="pill">Programme officiel couvert</span>
           <h2>Apprends le code côtier<br /><em>sans te noyer dans le cours.</em></h2>
@@ -249,18 +264,18 @@ function Dashboard({ progressData, setView }: { progressData: StoredProgress; se
           const score = progressData.quizScores[chapter.id];
           return (
             <button className="chapter-card" key={chapter.id} onClick={() => setView({ type: "chapter", chapterId: chapter.id })}>
-              <div className="chapter-cover"><img src={chapter.cover} alt="" /></div>
+              <div className="chapter-cover"><AppImage src={chapter.cover} alt="" /></div>
               <div className="chapter-card-body">
-              <div className="chapter-icon">{chapter.icon}</div>
-              <div className="chapter-content">
-                <div className="chapter-meta"><span>Chapitre {chapter.number}</span><span>{chapter.duration}</span></div>
-                <h3>{chapter.title}</h3>
-                <p>{chapter.summary}</p>
-                <div className="chapter-status">
-                  <span className={done ? "done" : "todo"}>{done ? "✓ Terminé" : "À apprendre"}</span>
-                  {typeof score === "number" && <span>{score}/{chapter.questions.length} au quiz</span>}
+                <div className="chapter-icon">{chapter.icon}</div>
+                <div className="chapter-content">
+                  <div className="chapter-meta"><span>Chapitre {chapter.number}</span><span>{chapter.duration}</span></div>
+                  <h3>{chapter.title}</h3>
+                  <p>{chapter.summary}</p>
+                  <div className="chapter-status">
+                    <span className={done ? "done" : "todo"}>{done ? "✓ Terminé" : "À apprendre"}</span>
+                    {typeof score === "number" && <span>{score}/{chapter.questions.length} au quiz</span>}
+                  </div>
                 </div>
-              </div>
               </div>
             </button>
           );
@@ -321,7 +336,7 @@ function Program({ progressData, setView, query }: { progressData: StoredProgres
           return (
             <button key={chapter.id} className="program-item" onClick={() => setView({ type: "chapter", chapterId: chapter.id })}>
               <span className="program-number">{String(chapter.number).padStart(2, "0")}</span>
-              <span className="program-thumb"><img src={chapter.cover} alt="" /></span>
+              <span className="program-thumb"><AppImage src={chapter.cover} alt="" /></span>
               <span className="program-main"><strong>{chapter.title}</strong><small>{chapter.summary}</small></span>
               <span className="program-duration">{chapter.duration}</span>
               <span className={`program-state ${done ? "done" : ""}`}>{done ? "✓" : "→"}</span>
@@ -339,7 +354,7 @@ function ChapterView({ chapter, completed, onToggleComplete, setView }: { chapte
     <div className="lesson-layout">
       <main className="lesson-main">
         <button className="back" onClick={() => setView({ type: "program" })}>← Retour au programme</button>
-        <div className="lesson-cover"><img src={chapter.cover} alt="" /></div>
+        <div className="lesson-cover"><AppImage src={chapter.cover} alt="" /></div>
         <div className="lesson-title">
           <div className="lesson-big-icon">{chapter.icon}</div>
           <div><p className="eyebrow">CHAPITRE {chapter.number} • {chapter.duration}</p><h2>{chapter.title}</h2><p>{chapter.summary}</p></div>
@@ -354,7 +369,7 @@ function ChapterView({ chapter, completed, onToggleComplete, setView }: { chapte
         {chapter.id === "balisage" && (
           <section className="pictogram-panel">
             <h3>Pictogrammes de plage à reconnaître</h3>
-            <p>Ils complètent les bouées jaunes et le chenal traversier. Un symbole barré d'une bande rouge = interdit.</p>
+            <p>Photos et panneaux officiels : bouées jaunes, chenal, pictogrammes et pavillons. Un symbole barré d'une bande rouge = interdit. L'arrêté local prime.</p>
             <BeachPictograms />
           </section>
         )}
@@ -494,7 +509,7 @@ function ExamView({ onSave }: { onSave: (score: number) => void }) {
 
   if (!started) return (
     <section className="exam-start">
-      <img className="exam-hero" src="/images/feux-face-a-face.jpg" alt="Navire à moteur vu de face de nuit, feux de route." />
+      <AppImage className="exam-hero" src="/images/feux-face-a-face.jpg" alt="Navire à moteur vu de face de nuit, feux de route." />
       <p className="eyebrow">SIMULATION</p>
       <h2>Examen blanc côtier</h2>
       <p>40 questions tirées aléatoirement de tout le programme, avec les mêmes visuels d'identification que dans le cours. Pour être reçu dans cette simulation, vise au moins 35 bonnes réponses.</p>
@@ -515,7 +530,7 @@ function ExamView({ onSave }: { onSave: (score: number) => void }) {
         <div className="review-list">
           {exam.map((q, i) => {
             const ok = answers[q.id] === q.correct;
-            return <details key={q.id} className={ok ? "review ok" : "review ko"}><summary><span>{ok ? "✓" : "✕"}</span> Q{i + 1}. {q.question}</summary>{q.image && <img className="review-thumb" src={q.image} alt="" />}<p><strong>Bonne réponse :</strong> {q.choices[q.correct]}</p><p>{q.explanation}</p></details>;
+            return <details key={q.id} className={ok ? "review ok" : "review ko"}><summary><span>{ok ? "✓" : "✕"}</span> Q{i + 1}. {q.question}</summary>{q.image && <AppImage className="review-thumb" src={q.image} alt="" />}<p><strong>Bonne réponse :</strong> {q.choices[q.correct]}</p><p>{q.explanation}</p></details>;
           })}
         </div>
         <button className="primary" onClick={start}>Refaire un examen</button>
@@ -569,7 +584,7 @@ function Vocabulary({ query, setView }: { query: string; setView: (v: View) => v
         <div>
           <span className="pill">{lexicon.length} termes</span>
           <h2>Lexique du code côtier</h2>
-          <p>Les mots que l'examen attend : définitions précises, pièges fréquents, lien vers le chapitre. Utilise la recherche en haut de page.</p>
+          <p>Les mots que l&apos;examen attend, illustrés : photo du bateau ou de la marque, plus un schéma d&apos;orientation quand ça aide (proue, poupe, bâbord, tribord…).</p>
         </div>
       </div>
       <div className="vocab-filters" role="tablist" aria-label="Catégories du lexique">
@@ -580,21 +595,61 @@ function Vocabulary({ query, setView }: { query: string; setView: (v: View) => v
           </button>
         ))}
       </div>
+      {(category === "all" || category === "bord") && (
+        <div className="vocab-hero-plate">
+          <ExamPlate id="boat-plan" caption="Vue du dessus : le skipper regarde vers la proue. Sa gauche = bâbord = rouge. Sa droite = tribord = vert." />
+          <figure className="vocab-hero-photo">
+            <AppImage src="/images/vocab-cockpit-avant.png?v=2" alt="Depuis le poste de barre, regard vers l'avant : feu rouge à gauche, feu vert à droite." />
+            <figcaption>Même chose depuis le volant, nez vers l&apos;avant : gauche rouge, droite verte.</figcaption>
+          </figure>
+        </div>
+      )}
       <p className="vocab-count">{results.length} entrée{results.length > 1 ? "s" : ""}{query.trim() ? ` pour « ${query.trim()} »` : ""}</p>
       <div className="vocab-grid">
         {results.map((item) => {
           const chapter = item.chapterId ? chapters.find((c) => c.id === item.chapterId) : undefined;
           return (
             <article className="vocab-card" key={item.id}>
-              <p className="eyebrow">{vocabCategories.find((c) => c.id === item.category)?.label}</p>
-              <h3>{item.term}</h3>
-              <p>{item.definition}</p>
-              {item.exam && <div className="trap-box compact"><strong>Piège d'examen</strong><span>{item.exam}</span></div>}
-              {chapter && (
-                <button className="text-button" onClick={() => setView({ type: "chapter", chapterId: chapter.id })}>
-                  Voir le cours — {chapter.title} →
-                </button>
+              {(item.image || item.plate) && (
+                <div className="vocab-media">
+                  {item.image && (
+                    <figure className="vocab-photo">
+                      <AppImage src={item.image} alt={item.imageAlt ?? item.term} />
+                      {item.imageCaption && <figcaption>{item.imageCaption}</figcaption>}
+                    </figure>
+                  )}
+                  {item.plate && (
+                    <div className="vocab-plate">
+                      <ExamPlate id={item.plate} caption="" />
+                    </div>
+                  )}
+                </div>
               )}
+              <div className="vocab-card-body">
+                <p className="eyebrow">{vocabCategories.find((c) => c.id === item.category)?.label}</p>
+                <h3>
+                  {item.term}
+                  {item.colorHint === "red" && (
+                    <span className="side-color red" title="Couleur : rouge">
+                      <i aria-hidden="true" />
+                      Rouge
+                    </span>
+                  )}
+                  {item.colorHint === "green" && (
+                    <span className="side-color green" title="Couleur : vert">
+                      <i aria-hidden="true" />
+                      Vert
+                    </span>
+                  )}
+                </h3>
+                <p>{item.definition}</p>
+                {item.exam && <div className="trap-box compact"><strong>Piège d'examen</strong><span>{item.exam}</span></div>}
+                {chapter && (
+                  <button className="text-button" onClick={() => setView({ type: "chapter", chapterId: chapter.id })}>
+                    Voir le cours — {chapter.title} →
+                  </button>
+                )}
+              </div>
             </article>
           );
         })}

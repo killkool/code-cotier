@@ -8,7 +8,22 @@ export type ExamPlateId =
   | "sounds"
   | "cardinals"
   | "port-traffic"
-  | "day-marks";
+  | "day-marks"
+  | "boat-plan"
+  | "boat-proue"
+  | "boat-poupe"
+  | "boat-babord"
+  | "boat-tribord"
+  | "boat-travers"
+  | "cap-route"
+  | "gisement"
+  | "amures"
+  | "au-vent"
+  | "region-a"
+  | "region-b"
+  | "tide-levels"
+  | "light-sectors"
+  | "light-rhythms";
 
 export type LessonImage = {
   src: string;
@@ -99,6 +114,7 @@ export const chapters: Chapter[] = [
           "Confondre « bâbord du bateau » et « bâbord du chenal » en sortant : la marque rouge reste la marque bâbord, même si elle est alors à ta droite.",
           "Inventer un feu blanc sur une latérale : en région A, latéral = rouge ou vert, pas blanc.",
         ],
+        plate: "boat-plan",
         terms: [
           { term: "Bâbord", meaning: "Gauche du navire, regard vers l'avant. Marque rouge en région A." },
           { term: "Tribord", meaning: "Droit du navire. Marque verte en région A." },
@@ -204,9 +220,17 @@ export const chapters: Chapter[] = [
         terms: [
           { term: "Pictogramme", meaning: "Panneau normalisé d'activité autorisée ou interdite sur la plage." },
           { term: "Chenal traversier", meaning: "Couloir d'accès des engins, perpendiculaire à la plage." },
+          { term: "Pavillons de plage", meaning: "Vert : baignade surveillée. Jaune : dangereuse mais surveillée. Rouge : interdite. Violet : pollution. Manche à air orange : vent fort, gonflables interdits." },
         ],
         images: [
-          { src: "/images/plage-balisage.jpg", alt: "Plage avec bouées jaunes délimitant la baignade et un chenal d'accès pour les engins nautiques.", caption: "Près des plages : bouées jaunes pour la baignade, chenaux traversiers pour les engins. Respecter le balisage local." },
+          { src: "/images/plage-bouees-jaunes.jpg", alt: "Ligne de bouées sphériques jaunes délimitant une zone de baignade le long d'une plage.", caption: "Bouées jaunes de plage = limite de baignade. Ce n'est pas une marque spéciale AISM du large." },
+          { src: "/images/plage-chenal-acces.jpg", alt: "Chenal d'accès vu depuis la mer : bouée rouge cylindrique à bâbord, bouée verte conique à tribord, bateau dans le couloir.", caption: "Chenal traversier depuis la mer : rouge à bâbord, vert à tribord. On n'y nage pas." },
+          { src: "/images/picto-baignade-surveillee.jpg", alt: "Pictogramme officiel bleu avec un nageur blanc : baignade autorisée ou surveillée.", caption: "Panneau bleu, nageur blanc : baignade surveillée / autorisée." },
+          { src: "/images/picto-baignade-interdite.jpg", alt: "Pictogramme d'interdiction : nageur noir barré d'une bande rouge.", caption: "Nageur barré = baignade interdite, même si l'eau paraît calme." },
+          { src: "/images/picto-navires-interdits.jpg", alt: "Pictogramme d'interdiction : bateau à moteur barré d'une bande rouge.", caption: "Bateau barré : navires interdits, souvent dans la zone de baignade." },
+          { src: "/images/picto-ski-interdit.jpg", alt: "Pictogramme d'interdiction : skieur nautique barré d'une bande rouge.", caption: "Ski et engins tractés interdits dans ce secteur." },
+          { src: "/images/plage-pavillons.jpg", alt: "Mât de poste de secours avec pavillons vert, jaune, rouge, violet et manche à air orange.", caption: "Pavillons de plage : vert / jaune / rouge / violet, plus la manche à air orange." },
+          { src: "/images/picto-vitesse-5-noeuds.jpg", alt: "Panneau circulaire de limitation à 5 nœuds au bord d'une plage, avec bouées jaunes en arrière-plan.", caption: "Bande des 300 m : 5 nœuds en règle générale, hors chenaux et arrêtés locaux." },
         ],
       },
       {
@@ -225,6 +249,7 @@ export const chapters: Chapter[] = [
         traps: [
           "Inverser aussi les cardinales en région B : erreur classique. Seules les latérales changent de couleur de côté.",
         ],
+        plate: "region-b",
         warning: "Ne jamais déduire une règle d'une couleur aperçue au loin : confirmer avec la forme, le voyant, le feu, la carte et la région AISM indiquée.",
       },
     ],
@@ -237,10 +262,18 @@ export const chapters: Chapter[] = [
       { id: "bal-6", question: "Quelle est cette marque à rayures verticales rouge et blanc ?", choices: ["Danger isolé", "Cardinale Ouest", "Eaux saines", "Marque spéciale"], correct: 2, explanation: "Rayures verticales rouge/blanc et une boule rouge = eaux saines, navigables tout autour.", image: "/images/mark-eaux-saines.jpg", imageAlt: "Marque d'eaux saines." },
       { id: "bal-7", question: "Cette cardinale noire-jaune-noire, voyant à pointes opposées, se laisse :", choices: ["Au nord", "À l'est", "Au sud", "À l'ouest"], correct: 1, explanation: "Noir-jaune-noir et pointes opposées = cardinale Est. On passe à l'est de la marque.", image: "/images/mark-cardinale-est.jpg", imageAlt: "Cardinale Est." },
       { id: "bal-8", question: "Cette marque verte avec une bande rouge indique un chenal préféré :", choices: ["À tribord", "À bâbord", "Des deux côtés également", "Interdit"], correct: 1, explanation: "Vert avec bande rouge = marque tribord modifiée = chenal préféré à bâbord.", image: "/images/mark-chenal-prefere-babord.jpg", imageAlt: "Chenal préféré à bâbord." },
-      { id: "bal-9", question: "Près d'une plage, des bouées jaunes délimitent le plus souvent :", choices: ["Un chenal commercial", "Une zone de baignade", "Une cardinale Ouest", "Un danger isolé"], correct: 1, explanation: "Les bouées jaunes de plage matérialisent en général la limite de baignade, à distinguer d'une marque spéciale du large." },
-      { id: "bal-10", question: "Dans un chenal traversier de plage, la baignade est :", choices: ["Toujours prioritaire", "Interdite", "Autorisée la nuit seulement", "Libre hors juillet-août"], correct: 1, explanation: "Le chenal est réservé à l'accès des engins nautiques ; on n'y nage pas." },
+      { id: "bal-9", question: "Ce balisage de plage (bouées jaunes) délimite le plus souvent :", choices: ["Un chenal commercial", "Une zone de baignade", "Une cardinale Ouest", "Un danger isolé"], correct: 1, explanation: "Les bouées jaunes de plage matérialisent en général la limite de baignade, à distinguer d'une marque spéciale du large.", image: "/images/plage-bouees-jaunes.jpg", imageAlt: "Ligne de bouées jaunes le long d'une plage." },
+      { id: "bal-10", question: "Ce couloir, vu depuis la mer, est un chenal traversier. La baignade y est :", choices: ["Toujours prioritaire", "Interdite", "Autorisée la nuit seulement", "Libre hors juillet-août"], correct: 1, explanation: "Le chenal est réservé à l'accès des engins nautiques ; on n'y nage pas. Depuis la mer : rouge à bâbord, vert à tribord.", image: "/images/plage-chenal-acces.jpg", imageAlt: "Chenal d'accès avec bouée rouge à gauche et verte à droite." },
       { id: "bal-11", question: "Le voyant d'une marque sert principalement à :", choices: ["Mesurer le vent", "Identifier la marque de jour, même si la couleur est mal lue", "Remplacer la carte", "Indiquer la profondeur exacte"], correct: 1, explanation: "Cylindre, cône, boules ou X permettent l'identification diurne." },
       { id: "bal-12", question: "Les feux des marques cardinales sont :", choices: ["Rouges", "Verts", "Blancs", "Jaunes"], correct: 2, explanation: "Les cardinales portent un feu blanc, distingué par le rythme d'éclats." },
+      { id: "bal-13", question: "Ce pictogramme / ce balisage indique :", choices: ["Baignade surveillée", "Baignade interdite", "Ski nautique autorisé", "Chenal préféré"], correct: 1, explanation: "Un nageur barré d'une bande rouge = baignade interdite.", image: "/images/picto-baignade-interdite.jpg", imageAlt: "Pictogramme nageur barré." },
+      { id: "bal-14", question: "Ce pictogramme / ce balisage indique :", choices: ["Baignade interdite", "Baignade surveillée ou autorisée", "Accès portuaire fermé", "Danger isolé"], correct: 1, explanation: "Panneau bleu au nageur blanc : activité de baignade autorisée / surveillée.", image: "/images/picto-baignade-surveillee.jpg", imageAlt: "Pictogramme bleu nageur." },
+      { id: "bal-15", question: "Ce pictogramme / ce balisage indique :", choices: ["Voile obligatoire", "Navires et moteurs interdits", "Eaux saines", "Mouillage autorisé"], correct: 1, explanation: "Bateau barré d'une bande rouge = navires interdits dans le secteur.", image: "/images/picto-navires-interdits.jpg", imageAlt: "Pictogramme bateau barré." },
+      { id: "bal-16", question: "Ce pictogramme / ce balisage indique :", choices: ["Ski nautique et engins tractés interdits", "Baignade surveillée", "Planche à voile obligatoire", "Chenal commercial"], correct: 0, explanation: "Skieur barré = ski et activités tractées interdits ici.", image: "/images/picto-ski-interdit.jpg", imageAlt: "Pictogramme ski nautique interdit." },
+      { id: "bal-17", question: "Ce pavillon de plage indique :", choices: ["Baignade interdite", "Baignade surveillée, pas de danger apparent", "Pollution", "Vent fort"], correct: 1, explanation: "Pavillon vert : baignade surveillée sans danger apparent.", image: "/images/pavillon-vert-plage.jpg", imageAlt: "Pavillon de plage vert." },
+      { id: "bal-18", question: "Ce pavillon de plage indique :", choices: ["Baignade surveillée sans danger", "Baignade interdite", "Chenal ouvert", "Ski autorisé"], correct: 1, explanation: "Pavillon rouge : baignade interdite.", image: "/images/pavillon-rouge-plage.jpg", imageAlt: "Pavillon de plage rouge." },
+      { id: "bal-19", question: "Ce panneau, près du littoral, rappelle surtout :", choices: ["20 nœuds hors baignade", "5 nœuds dans la bande des 300 m, hors régimes locaux", "Interdiction totale de naviguer", "Obligation de mouiller"], correct: 1, explanation: "La règle générale enseignée est 5 nœuds dans les 300 m, sous réserve des chenaux et arrêtés locaux.", image: "/images/picto-vitesse-5-noeuds.jpg", imageAlt: "Panneau de limitation à 5 nœuds." },
+      { id: "bal-20", question: "Cette manche à air orange sur une plage signifie surtout :", choices: ["Baignade interdite pour pollution", "Vent fort : engins gonflables interdits", "Port fermé", "Plongée en cours"], correct: 1, explanation: "Manche à air orange = vent fort, matelas et bouées gonflables interdits.", image: "/images/manche-air-orange.jpg", imageAlt: "Manche à air orange de plage." },
     ],
   },
   {
@@ -293,6 +326,7 @@ export const chapters: Chapter[] = [
         traps: [
           "Attendre que l'autre « ait l'air proche ». Le RIPAM veut une action dès que le risque est établi, pas au dernier moment.",
         ],
+        plate: "gisement",
         terms: [
           { term: "Relèvement", meaning: "Direction d'un objet mesurée depuis le navire, souvent au compas." },
           { term: "Gisement", meaning: "Angle par rapport à l'axe du bateau (0° = avant)." },
@@ -334,6 +368,7 @@ export const chapters: Chapter[] = [
         traps: [
           "Utiliser le mot priorité comme au code de la route. En mer, même le privilégié doit éviter la collision.",
         ],
+        plates: ["amures", "au-vent"],
         warning: "Identifier d'abord la situation complète (type de navires, chenal, rattrapage) avant d'appliquer une règle isolée.",
       },
       {
@@ -415,7 +450,7 @@ export const chapters: Chapter[] = [
           "Inverser rouge et vert « comme les feux de circulation » : en mer, rouge est à bâbord du navire observé, donc à ta gauche s'il vient vers toi.",
           "Traiter un voilier au moteur comme un voilier « prioritaire ».",
         ],
-        plate: "lights-power",
+        plates: ["lights-power", "light-sectors"],
         images: [
           { src: "/images/feux-face-a-face.jpg", alt: "Navire à moteur vu de face de nuit : feu de tête de mât blanc, feu bâbord rouge à gauche, feu tribord vert à droite.", caption: "Vu de face : blanc en haut, rouge à gauche (son bâbord), vert à droite (son tribord). Risque de face-à-face." },
           { src: "/images/feux-cote-babord.jpg", alt: "Navire à moteur vu de son bâbord de nuit : feu rouge de côté, feu de tête de mât blanc et feu de poupe blanc.", caption: "Vu de bâbord : on voit le rouge, le blanc de tête de mât et le blanc de poupe. Pas de vert." },
@@ -671,6 +706,9 @@ export const chapters: Chapter[] = [
           "Croire que 5 nœuds ne s'appliquent que s'il y a des baigneurs visibles.",
           "Accélérer dans un chenal de plage comme sur un circuit.",
         ],
+        images: [
+          { src: "/images/picto-vitesse-5-noeuds.jpg", alt: "Panneau circulaire limité à 5 nœuds au bord d'une plage, bouées jaunes en arrière-plan.", caption: "Bande des 300 m : 5 nœuds en règle générale. Chenaux et arrêtés locaux peuvent prévoir un autre régime." },
+        ],
       },
       {
         title: "Plongeurs, pêche et obstacles",
@@ -685,6 +723,7 @@ export const chapters: Chapter[] = [
         ],
         images: [
           { src: "/images/pavillon-alpha.jpg", alt: "Pavillon Alpha blanc et bleu à queue d'aronde hissé près de plongeurs en surface.", caption: "Pavillon Alpha : opérations de plongée. S'écarter et passer lentement." },
+          { src: "/images/picto-plongee.jpg", alt: "Pictogramme bleu d'un plongeur : zone de plongée, s'écarter et passer lentement.", caption: "Pictogramme de plongée à terre : même réflexe que le pavillon Alpha — loin et lent." },
         ],
       },
       {
@@ -708,7 +747,7 @@ export const chapters: Chapter[] = [
     ],
     questions: [
       { id: "sec-1", question: "Qui porte la responsabilité générale de la sécurité et de la conduite du bateau ?", choices: ["Le passager le plus âgé", "Le chef de bord", "Le propriétaire uniquement", "Le port"], correct: 1, explanation: "Le chef de bord organise et assume la conduite et la sécurité du navire." },
-      { id: "sec-2", question: "Dans la bande des 300 m, la vitesse est généralement limitée à :", choices: ["3 nœuds", "5 nœuds", "10 nœuds", "20 nœuds"], correct: 1, explanation: "La règle générale enseignée est 5 nœuds, sous réserve de la réglementation locale." },
+      { id: "sec-2", question: "Dans la bande des 300 m, la vitesse est généralement limitée à :", choices: ["3 nœuds", "5 nœuds", "10 nœuds", "20 nœuds"], correct: 1, explanation: "La règle générale enseignée est 5 nœuds, sous réserve de la réglementation locale.", image: "/images/picto-vitesse-5-noeuds.jpg", imageAlt: "Panneau 5 nœuds au bord d'une plage." },
       { id: "sec-3", question: "Ce pavillon attire notamment l'attention sur :", choices: ["Des opérations de plongée", "Un bateau au mouillage seulement", "Une panne de GPS", "Une régate terminée"], correct: 0, explanation: "Le pavillon Alpha (blanc et bleu, queue d'aronde) est associé à des opérations de plongée et appelle à la prudence.", image: "/images/pavillon-alpha.jpg", imageAlt: "Pavillon Alpha." },
       { id: "sec-4", question: "En visibilité réduite, le GPS :", choices: ["Remplace la veille", "Dispense de ralentir", "Est une aide mais ne remplace pas la veille", "Donne la priorité"], correct: 2, explanation: "Les aides électroniques complètent la veille ; elles ne la remplacent pas." },
       { id: "sec-5", question: "La charge maximale du bateau :", choices: ["Peut être dépassée par beau temps", "Doit respecter les limites du constructeur", "Ne concerne que le carburant", "Est sans effet sur la stabilité"], correct: 1, explanation: "Les limites prévues pour le navire doivent être respectées." },
@@ -1121,6 +1160,7 @@ export const chapters: Chapter[] = [
           "Toujours une marge sous la quille.",
         ],
         traps: ["Oublier que par coefficient fort, les basses mers sont plus basses (moins d'eau à BM)."],
+        plate: "tide-levels",
       },
       {
         title: "Marée, courant, coefficient et marnage",
@@ -1323,6 +1363,7 @@ export const chapters: Chapter[] = [
         traps: ["Skier dans le chenal traversier « parce qu'il est vide »."],
         images: [
           { src: "/images/ski-tracte.jpg", alt: "Skieur nautique tracté derrière un bateau, avec un observateur à bord.", caption: "Le conducteur conduit. Une autre personne surveille le pratiquant. Rester dans les zones autorisées." },
+          { src: "/images/picto-ski-interdit.jpg", alt: "Pictogramme de plage : skieur nautique barré d'une bande rouge.", caption: "Pictogramme ski interdit + bouées jaunes : tu vas plus loin, dans le secteur autorisé, ou tu ne skis pas." },
         ],
       },
       {
