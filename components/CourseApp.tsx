@@ -65,12 +65,22 @@ function ProgressRing({ value }: { value: number }) {
 
 function LessonMedia({ images, plate, plates }: { images?: LessonImage[]; plate?: ExamPlateId; plates?: ExamPlateId[] }) {
   const plateIds = plates ?? (plate ? [plate] : []);
+  const wide = images?.filter((img) => img.wide) ?? [];
+  const rest = images?.filter((img) => !img.wide) ?? [];
   return (
     <>
       {plateIds.map((id) => <ExamPlate key={id} id={id} />)}
-      {images && images.length > 0 && (
-        <div className={images.length > 1 ? "figure-grid" : "figure-single"}>
-          {images.map((img) => (
+      {wide.map((img) => (
+        <div className="figure-single wide" key={img.src}>
+          <figure className="lesson-figure">
+            <AppImage src={img.src} alt={img.alt} />
+            <figcaption>{img.caption}</figcaption>
+          </figure>
+        </div>
+      ))}
+      {rest.length > 0 && (
+        <div className={rest.length > 1 ? "figure-grid" : "figure-single"}>
+          {rest.map((img) => (
             <figure className="lesson-figure" key={img.src}>
               <AppImage src={img.src} alt={img.alt} />
               <figcaption>{img.caption}</figcaption>
@@ -232,6 +242,10 @@ function Dashboard({ progressData, setView }: { progressData: StoredProgress; se
   const next = chapters.find((c) => !progressData.completed.includes(c.id)) ?? chapters[0];
   return (
     <>
+      <aside className="dev-banner" role="status">
+        <strong>Site en cours de développement</strong>
+        <p>Cap Côtier n&apos;est pas encore finalisé. Les cours, le lexique et les quiz peuvent contenir des erreurs ou des imprécisions. Vérifie toujours les textes officiels, et ne t&apos;appuie pas uniquement sur ce site pour naviguer ou passer l&apos;examen.</p>
+      </aside>
       <section className="hero-card">
         <AppImage className="hero-photo" src="/images/hero-cotier.jpg" alt="Bateau de plaisance dans un chenal côtier au coucher du soleil." />
         <div className="hero-copy">

@@ -898,7 +898,11 @@ const lexiconVisuals: Record<string, Pick<LexiconTerm, "image" | "imageAlt" | "i
   occultation: { plate: "light-rhythms" },
   isophase: { plate: "light-rhythms" },
   chenal: { image: "/images/plage-chenal-acces.jpg", imageAlt: "Chenal d'accès balisé rouge et vert." },
-  "chenal-prefere": { image: "/images/mark-chenal-prefere-tribord.jpg", imageAlt: "Marque de chenal préféré : rouge avec une bande verte." },
+  "chenal-prefere": {
+    image: "/images/planche-4-balises.jpg",
+    imageAlt: "Planche des quatre cas : rouge, vert, chenal préféré à tribord et chenal préféré à bâbord.",
+    imageCaption: "Du large vers le port : on laisse la couleur dominante comme une latérale simple.",
+  },
   "danger-isole": { image: "/images/mark-danger-isole.jpg", imageAlt: "Marque de danger isolé, noire à bande rouge, deux boules." },
   "eaux-saines": { image: "/images/mark-eaux-saines.jpg", imageAlt: "Marque d'eaux saines à rayures verticales rouge et blanc." },
   "marque-speciale": { image: "/images/mark-speciale.jpg", imageAlt: "Marque spéciale jaune, voyant en X." },

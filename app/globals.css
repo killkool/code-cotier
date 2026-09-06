@@ -51,6 +51,10 @@ a { color: inherit; }
 .search-box input::placeholder { color: #9cafb4; }
 .page-content { padding: 34px clamp(24px, 4vw, 64px) 70px; max-width: 1450px; margin: 0 auto; }
 
+.dev-banner { background: #fff5e7; border: 1px solid #f0d9a8; border-left: 4px solid var(--yellow); border-radius: 16px; padding: 16px 20px; margin: 0 0 18px; }
+.dev-banner strong { display: block; color: #6b4e12; font-size: 14px; }
+.dev-banner p { margin: 6px 0 0; color: #705f3d; line-height: 1.55; font-size: 13px; max-width: 72ch; }
+
 .hero-card { min-height: 320px; background: linear-gradient(135deg, #0b2730 0%, #123d48 70%, #17505d 100%); color: white; border-radius: 26px; padding: clamp(30px, 4vw, 56px); display: flex; align-items: center; justify-content: space-between; gap: 50px; overflow: hidden; position: relative; box-shadow: var(--shadow); }
 .hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .hero-card::before { content: ""; position: absolute; inset: 0; background: linear-gradient(105deg, rgba(8,28,35,.92) 0%, rgba(11,39,48,.72) 48%, rgba(11,39,48,.42) 100%); z-index: 1; }
@@ -230,6 +234,7 @@ a { color: inherit; }
 .lesson-figure { margin: 0; background: #d4e4ea; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
 .figure-grid .lesson-figure img { width: 100%; height: auto; min-height: 280px; max-height: 460px; aspect-ratio: 4 / 3; object-fit: contain; object-position: center; display: block; padding: 14px; background: #d4e4ea; }
 .figure-single .lesson-figure img { width: 100%; height: auto; min-height: 360px; max-height: 560px; object-fit: contain; object-position: center; display: block; padding: 16px; background: #d4e4ea; }
+.figure-single.wide .lesson-figure img { min-height: 0; max-height: none; padding: 10px; }
 .lesson-figure figcaption { padding: 10px 12px 12px; font-size: 12px; color: #4f666d; line-height: 1.5; }
 .exam-plate { margin: 16px 0 8px; }
 .exam-plate svg { width: 100%; height: auto; display: block; border-radius: 16px; }

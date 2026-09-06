@@ -29,6 +29,7 @@ export type LessonImage = {
   src: string;
   alt: string;
   caption: string;
+  wide?: boolean;
 };
 
 export type VocabTerm = {
@@ -143,6 +144,31 @@ export const chapters: Chapter[] = [
         images: [
           { src: "/images/mark-chenal-prefere-tribord.jpg", alt: "Marque de chenal préféré à tribord : cylindre rouge avec une large bande verte horizontale.", caption: "Chenal préféré à tribord : rouge avec une bande verte (forme de marque bâbord)." },
           { src: "/images/mark-chenal-prefere-babord.jpg", alt: "Marque de chenal préféré à bâbord : cône vert avec une large bande rouge horizontale.", caption: "Chenal préféré à bâbord : vert avec une bande rouge (forme de marque tribord)." },
+        ],
+      },
+      {
+        title: "Les 4 balises à bien distinguer",
+        definition: "Même situation, quatre cas. On se place dans le bateau, on vient du large vers le port : bâbord à gauche, tribord à droite.",
+        body: [
+          "Les deux marques simples d'abord : rouge = je la laisse à bâbord, donc je passe à droite de la balise. Vert = je la laisse à tribord, donc je passe à gauche de la balise.",
+          "Les chenaux préférés se lisent comme une latérale de la couleur dominante. Rouge + bande verte : je la laisse à bâbord, le chenal principal part à droite (préféré à tribord). Vert + bande rouge : je la laisse à tribord, le chenal principal part à gauche (préféré à bâbord).",
+        ],
+        remember: [
+          "Rouge simple → à gauche du bateau.",
+          "Vert simple → à droite du bateau.",
+          "Rouge dominant + bande verte → à gauche, puis le principal part à droite.",
+          "Vert dominant + bande rouge → à droite, puis le principal part à gauche.",
+        ],
+        traps: [
+          "Lire « chenal préféré à tribord » comme « je laisse la marque à tribord ». Non : on laisse la marque comme sa couleur dominante, et le chenal recommandé est de l'autre côté.",
+        ],
+        images: [
+          {
+            src: "/images/planche-4-balises.jpg",
+            wide: true,
+            alt: "Planche région A : bateau vu de dessus, bâbord à gauche et tribord à droite, face à une balise rouge, une verte, un chenal préféré à tribord et un chenal préféré à bâbord.",
+            caption: "Région A, du large vers le port. Le bateau a son bâbord à gauche et son tribord à droite. La planche montre où on passe selon la balise.",
+          },
         ],
       },
       {
