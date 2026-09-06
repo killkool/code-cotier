@@ -207,7 +207,7 @@ export const chapters: Chapter[] = [
         definition: "Trois marques « tout autour » : danger isolé (on passe autour, pas dessus), eaux saines (eau navigable tout autour), spéciale (zone particulière à lire sur la carte).",
         body: [
           "Danger isolé : noir avec une ou plusieurs bandes rouges horizontales, deux boules noires. Feu blanc à groupes de deux éclats. Le danger est localisé ; des eaux navigables existent autour, mais la marque elle-même n'est pas un lieu de passage.",
-          "Eaux saines : bandes verticales rouges et blanches, une boule rouge. Feu blanc, souvent à un éclat. Milieu de chenal, atterrissage ou zone d'eau sûre. Ce n'est pas un danger.",
+          "Eaux saines : bandes verticales rouges et blanches, une boule rouge. Le feu est blanc et peut être isophase (Iso), à occultations (Oc), à un éclat long toutes les 10 secondes (LFl 10s) ou Morse A (Mo(A)). Milieu de chenal, atterrissage ou zone d'eau sûre. Ce n'est pas un danger.",
           "Marque spéciale : entièrement jaune, voyant en X (croix de Saint-André). Feu jaune. Câble, émissaire, mouillage, travaux, zone réglementée, parc ostréicole, etc. Sans la carte, tu sais seulement « attention, cas particulier ».",
         ],
         remember: [
@@ -246,7 +246,7 @@ export const chapters: Chapter[] = [
         terms: [
           { term: "Pictogramme", meaning: "Panneau normalisé d'activité autorisée ou interdite sur la plage." },
           { term: "Chenal traversier", meaning: "Couloir d'accès des engins, perpendiculaire à la plage." },
-          { term: "Pavillons de plage", meaning: "Vert : baignade surveillée. Jaune : dangereuse mais surveillée. Rouge : interdite. Violet : pollution. Manche à air orange : vent fort, gonflables interdits." },
+          { term: "Pavillons de plage", meaning: "Vert : baignade surveillée sans danger apparent. Jaune : baignade surveillée avec danger limité ou marqué. Rouge : baignade interdite. Deux drapeaux rouge et jaune délimitent la zone de baignade surveillée. Un signal violet peut notamment signaler une pollution, des espèces aquatiques dangereuses ou une zone marine/sous-marine protégée. La manche à air orange signale des conditions de vent défavorables pour certains équipements nautiques, notamment les gonflables." },
         ],
         images: [
           { src: "/images/plage-bouees-jaunes.jpg", alt: "Ligne de bouées sphériques jaunes délimitant une zone de baignade le long d'une plage.", caption: "Bouées jaunes de plage = limite de baignade. Ce n'est pas une marque spéciale AISM du large." },
@@ -299,7 +299,7 @@ export const chapters: Chapter[] = [
       { id: "bal-17", question: "Ce pavillon de plage indique :", choices: ["Baignade interdite", "Baignade surveillée, pas de danger apparent", "Pollution", "Vent fort"], correct: 1, explanation: "Pavillon vert : baignade surveillée sans danger apparent.", image: "/images/pavillon-vert-plage.jpg", imageAlt: "Pavillon de plage vert." },
       { id: "bal-18", question: "Ce pavillon de plage indique :", choices: ["Baignade surveillée sans danger", "Baignade interdite", "Chenal ouvert", "Ski autorisé"], correct: 1, explanation: "Pavillon rouge : baignade interdite.", image: "/images/pavillon-rouge-plage.jpg", imageAlt: "Pavillon de plage rouge." },
       { id: "bal-19", question: "Ce panneau, près du littoral, rappelle surtout :", choices: ["20 nœuds hors baignade", "5 nœuds dans la bande des 300 m, hors régimes locaux", "Interdiction totale de naviguer", "Obligation de mouiller"], correct: 1, explanation: "La règle générale enseignée est 5 nœuds dans les 300 m, sous réserve des chenaux et arrêtés locaux.", image: "/images/picto-vitesse-5-noeuds.jpg", imageAlt: "Panneau de limitation à 5 nœuds." },
-      { id: "bal-20", question: "Cette manche à air orange sur une plage signifie surtout :", choices: ["Baignade interdite pour pollution", "Vent fort : engins gonflables interdits", "Port fermé", "Plongée en cours"], correct: 1, explanation: "Manche à air orange = vent fort, matelas et bouées gonflables interdits.", image: "/images/manche-air-orange.jpg", imageAlt: "Manche à air orange de plage." },
+      { id: "bal-20", question: "Cette manche à air orange sur une plage signale surtout :", choices: ["Une pollution de l’eau", "Des conditions de vent défavorables pour certains équipements nautiques, notamment les gonflables", "La fermeture du port", "Une plongée en cours"], correct: 1, explanation: "La manche à air orange signale des conditions de vent défavorables pour certains équipements nautiques. Elle ne constitue pas, à elle seule, une interdiction nationale automatique de tous les gonflables : la signalisation et les règles locales restent à respecter.", image: "/images/manche-air-orange.jpg", imageAlt: "Manche à air orange de plage." },
     ],
   },
   {
@@ -642,7 +642,7 @@ export const chapters: Chapter[] = [
         title: "Signaux de détresse",
         definition: "Fusée ou feu rouge, fumée orange, MAYDAY, alerte ASN, bras écartés, etc. Un usage sans motif réel est une infraction grave.",
         body: [
-          "Le RIPAM et les conventions listent les signaux reconnus. Au permis : feu rouge à main, fusée parachute rouge, fumigène orange, appel MAYDAY, touche DISTRESS ASN, miroir, signal sonore continu… On ne « teste » pas une fusée pour le plaisir.",
+          "Le RIPAM et les conventions listent les signaux reconnus. Au permis : feu rouge à main, fusée parachute rouge, fumigène orange, appel MAYDAY, alerte DISTRESS ASN, émission continue d'un signal sonore, etc. Le miroir de signalisation peut servir à attirer l'attention mais n'est pas, à lui seul, un signal de détresse de l'annexe IV du RIPAM. Le signal gestuel reconnu consiste à lever et abaisser lentement et de façon répétée les bras étendus de chaque côté. On ne « teste » jamais une fusée pour le plaisir.",
           "Après l'alerte : rester à l'écoute, suivre les instructions du CROSS, préparer le matériel de récupération, ne pas quitter le navire trop tôt.",
         ],
         remember: [
@@ -657,14 +657,14 @@ export const chapters: Chapter[] = [
         title: "Trafic portuaire",
         definition: "À l'entrée d'un port, des feux de trafic indiquent si on peut entrer, sortir, ou si le port est fermé. Les combinaisons locales figurent dans les documents nautiques.",
         body: [
-          "Combinaisons souvent enseignées en France : trois feux rouges verticaux = entrée (et parfois sortie) interdite ; deux feux verts verticaux = entrée autorisée. D'autres feux (blanc intercalé, clignotant) signalent une restriction ou une urgence. Ce n'est pas un code universel identique dans tous les ports du monde : on vérifie Instructions nautiques, guide du port, VHF du port.",
+          "Dans la signalisation principale AISM de trafic portuaire, le message est composé de trois feux verticaux. Trois rouges fixes (ou à occultations lentes synchronisées) signifient que les navires ne doivent pas poursuivre. Trois verts signifient que les navires peuvent poursuivre avec trafic à sens unique. Vert-vert-blanc autorise la poursuite avec trafic dans les deux sens. Vert-blanc-vert signifie que le navire ne peut poursuivre qu'après un ordre spécifique. Trois rouges clignotant ensemble signalent une urgence grave : tous les navires doivent s'arrêter ou se dérouter selon les instructions. Les signaux auxiliaires et prescriptions locales restent à vérifier dans les documents du port.",
           "Même « port ouvert », tu restes à tribord du chenal, tu cèdes aux navires de commerce peu manœuvrants, tu respectes la vitesse du port, tu n'encombre pas le goulet. Un ferry en manœuvre n'a pas ta capacité à s'arrêter.",
           "Cas concret : tu arrives, tu vois trois rouges. Tu attends au large ou dans la zone d'attente, tu n'forces pas « entre deux navires ». Tu peux appeler le port sur son canal de travail (souvent indiqué sur la carte ou l'almanach).",
         ],
         remember: [
-          "3 rouges verticaux : accès souvent interdit.",
-          "2 verts : accès souvent autorisé.",
-          "Toujours confirmer sur les documents du port.",
+          "3 rouges : ne pas poursuivre.",
+          "3 verts : passage possible, trafic à sens unique. Vert-vert-blanc : passage possible dans les deux sens.",
+          "Vert-blanc-vert : seulement après ordre spécifique. Toujours respecter les instructions et documents du port.",
         ],
         traps: [
           "Inventer le sens d'un feu inconnu. Si tu ne l'as pas appris pour CE port, tu n'entres pas à l'aveugle.",
@@ -678,8 +678,8 @@ export const chapters: Chapter[] = [
       { id: "sig-3", question: "MAYDAY est utilisé pour :", choices: ["Une information météo", "Une urgence grave et imminente", "Une simple panne sans danger", "Demander l'heure"], correct: 1, explanation: "MAYDAY est le message de détresse.", image: "/images/detresse-fusee.jpg", imageAlt: "Fusée ou feu rouge de détresse." },
       { id: "sig-4", question: "PAN PAN indique :", choices: ["Une urgence sérieuse sans détresse grave et imminente", "Un message commercial", "Une manœuvre de port", "Une balise cardinale"], correct: 0, explanation: "PAN PAN est un message d'urgence, moins critique que MAYDAY." },
       { id: "sig-5", question: "SÉCURITÉ sert principalement à annoncer :", choices: ["Un message lié à la sécurité de navigation ou météo", "Une réservation de port", "Une collision certaine", "Une demande de carburant"], correct: 0, explanation: "SÉCURITÉ précède un message de sécurité maritime." },
-      { id: "sig-6", question: "Trois feux rouges verticaux à l'entrée d'un port signifient le plus souvent :", choices: ["Accès autorisé", "Accès interdit", "Baignade surveillée", "Chenal préféré à tribord"], correct: 1, explanation: "Combinaison souvent enseignée : trois rouges = entrée interdite. Confirmer toujours sur les documents du port.", plate: "port-traffic" },
-      { id: "sig-7", question: "Deux feux verts verticaux à l'entrée d'un port indiquent le plus souvent :", choices: ["Port fermé", "Entrée autorisée", "Détresse", "Mouillage obligatoire"], correct: 1, explanation: "Deux verts : accès souvent autorisé, sans dispenser des règles de chenal et de vitesse.", plate: "port-traffic" },
+      { id: "sig-6", question: "Trois feux rouges verticaux de trafic portuaire signifient :", choices: ["Je peux poursuivre", "Je ne dois pas poursuivre", "Baignade surveillée", "Chenal préféré à tribord"], correct: 1, explanation: "Dans la signalisation principale AISM, trois rouges signifient que les navires ne doivent pas poursuivre.", plate: "port-traffic" },
+      { id: "sig-7", question: "Trois feux verts verticaux de trafic portuaire indiquent :", choices: ["Ne pas poursuivre", "Les navires peuvent poursuivre, avec trafic à sens unique", "Une détresse", "Un mouillage obligatoire"], correct: 1, explanation: "Trois verts autorisent la poursuite avec trafic à sens unique. Vert-vert-blanc indique que les navires peuvent poursuivre avec trafic dans les deux sens.", plate: "port-traffic" },
     ],
   },
   {
@@ -715,17 +715,29 @@ export const chapters: Chapter[] = [
         traps: ["Croire que le propriétaire absent est responsable à la place du conducteur du jour."],
       },
       {
+        title: "Coupe-circuit du moteur hors-bord",
+        definition: "Sur les moteurs hors-bord concernés, le conducteur doit rester relié au coupe-circuit lorsque le moteur tourne et le bateau fait route. Un second coupe-circuit filaire doit être rapidement et facilement accessible à bord.",
+        body: [
+          "Le coupe-circuit arrête le moteur si le conducteur tombe à l'eau. Le second dispositif sert à redémarrer pour récupérer la personne tombée : sa localisation doit être connue des personnes à bord. On ne contourne pas le dispositif avec une pince ou un montage permanent.",
+        ],
+        remember: [
+          "Conducteur relié au coupe-circuit lorsque les conditions réglementaires l'exigent.",
+          "Second coupe-circuit filaire : rapidement accessible et emplacement connu à bord.",
+        ],
+        traps: ["Laisser le coupe-circuit accroché au tableau de bord au lieu de le porter."],
+      },
+      {
         title: "Bande des 300 mètres et limitations de vitesse",
-        definition: "Dans la bande des 300 m le long du littoral, la vitesse est généralement limitée à 5 nœuds, sauf chenaux d'accès réglementés et arrêtés locaux contraires.",
+        definition: "Dans la bande des 300 m le long du littoral, on utilise les chenaux prévus pour les engins à moteur et on reste à moins de 5 nœuds. Les arrêtés locaux peuvent organiser ou restreindre davantage la navigation.",
         body: [
           "Pourquoi 5 nœuds : baigneurs, paddle, kayaks, annexes, enfants. Un sillage violent blesse autant qu'une collision. 5 nœuds ≈ 9 km/h : c'est lent, c'est voulu.",
-          "Exceptions fréquentes : le chenal d'accès à un port ou un chenal traversier de plage peut prévoir un régime différent — ce n'est pas un permis d'y foncer. Les ports ont souvent leur propre limite. Un arrêté préfectoral peut durcir (voire interdire certaines activités).",
+          "Dans la bande des 300 m, la règle à retenir pour le permis est de rester à moins de 5 nœuds et d'utiliser les chenaux balisés lorsqu'ils existent pour rejoindre ou quitter le rivage. Les arrêtés locaux, les ports et les zones de baignade peuvent imposer des restrictions supplémentaires : ils ne sont jamais une raison d'accélérer au milieu des usagers vulnérables.",
           "Autres limitations : distance aux plongeurs, aux zones de baignade (bouées jaunes), aux parcs ostréicoles, aux réserves. On ne se cale pas « au GPS 301 m » pour accélérer au raz des baigneurs.",
           "Cas concret : tu sors du port par le chenal, tu restes prudent ; une fois hors chenal mais encore dans les 300 m hors baignade, tu es à 5 nœuds jusqu'à en être sorti. Tu ne rases pas la plage pour « faire un passage ».",
         ],
         remember: [
-          "300 m : 5 nœuds en règle générale.",
-          "Chenaux et arrêtés locaux peuvent prévoir autre chose : les lire.",
+          "300 m : moins de 5 nœuds ; utiliser les chenaux prévus pour les engins à moteur.",
+          "Les arrêtés locaux peuvent être plus restrictifs : les lire.",
           "Le sillage fait partie de la vitesse responsable.",
         ],
         traps: [
@@ -740,17 +752,31 @@ export const chapters: Chapter[] = [
         title: "Plongeurs, pêche et obstacles",
         definition: "Le pavillon Alpha (blanc et bleu, queue d'aronde) signale des opérations de plongée : on s'écarte et on passe lentement.",
         body: [
-          "Des plongeurs peuvent être loin du bateau support. Un pavillon de plongée loisir (croix de Saint-André rouge/blanc) se rencontre aussi : même réflexe de prudence. On ne passe pas entre le bateau et les bulles.",
+          "Des plongeurs peuvent être loin du bateau support. Il faut rester à au moins 100 m des pavillons signalant des plongeurs : pavillon Alpha (blanc et bleu), pavillon rouge à diagonale blanche / croix de Saint-André selon la signalisation rencontrée. Même prudence envers les lignes de pêche signalées : au moins 100 m. On ne passe jamais entre le bateau support et les bulles.",
           "Filets, casiers, filières, parcs : peu visibles, parfois balisés en jaune (marque spéciale). La carte et la veille évitent de t'enrouler l'hélice.",
         ],
         remember: [
-          "Alpha = plongée = loin et lent.",
+          "Plongeurs signalés : au moins 100 m de distance, loin et lent.",
           "Les engins de pêche sont des pièges pour l'hélice.",
         ],
         images: [
           { src: "/images/pavillon-alpha.jpg", alt: "Pavillon Alpha blanc et bleu à queue d'aronde hissé près de plongeurs en surface.", caption: "Pavillon Alpha : opérations de plongée. S'écarter et passer lentement." },
           { src: "/images/picto-plongee.jpg", alt: "Pictogramme bleu d'un plongeur : zone de plongée, s'écarter et passer lentement.", caption: "Pictogramme de plongée à terre : même réflexe que le pavillon Alpha — loin et lent." },
         ],
+      },
+      {
+        title: "Catégories de conception CE",
+        definition: "Les catégories A, B, C et D décrivent les conditions de vent et de vagues pour lesquelles un bateau de plaisance a été conçu. Elles ne donnent pas une distance maximale de navigation.",
+        body: [
+          "Catégorie A : conçue pour des conditions pouvant dépasser force 8 Beaufort et 4 m de hauteur significative de vague, hors conditions exceptionnelles. Catégorie B : jusqu'à force 8 incluse et vagues jusqu'à 4 m. Catégorie C : jusqu'à force 6 incluse et vagues jusqu'à 2 m. Catégorie D : jusqu'à force 4 incluse et vagues significatives jusqu'à 0,30 m, avec des vagues occasionnelles jusqu'à 0,50 m.",
+          "Piège d'examen : une catégorie C ne signifie pas « côtier » au sens de 6 milles. Le permis, l'armement, la météo, la catégorie de conception et les limites du constructeur sont des contraintes différentes qui doivent toutes être respectées.",
+        ],
+        remember: [
+          "A : > 8 / > 4 m possibles hors conditions exceptionnelles.",
+          "B : ≤ 8 / ≤ 4 m. C : ≤ 6 / ≤ 2 m. D : ≤ 4 / ≤ 0,30 m (0,50 m occasionnel).",
+          "Catégorie CE ≠ distance d'un abri.",
+        ],
+        traps: ["Confondre la lettre C de catégorie de conception avec le permis côtier."],
       },
       {
         title: "Nombre de personnes et charge",
@@ -777,7 +803,11 @@ export const chapters: Chapter[] = [
       { id: "sec-3", question: "Ce pavillon attire notamment l'attention sur :", choices: ["Des opérations de plongée", "Un bateau au mouillage seulement", "Une panne de GPS", "Une régate terminée"], correct: 0, explanation: "Le pavillon Alpha (blanc et bleu, queue d'aronde) est associé à des opérations de plongée et appelle à la prudence.", image: "/images/pavillon-alpha.jpg", imageAlt: "Pavillon Alpha." },
       { id: "sec-4", question: "En visibilité réduite, le GPS :", choices: ["Remplace la veille", "Dispense de ralentir", "Est une aide mais ne remplace pas la veille", "Donne la priorité"], correct: 2, explanation: "Les aides électroniques complètent la veille ; elles ne la remplacent pas." },
       { id: "sec-5", question: "La charge maximale du bateau :", choices: ["Peut être dépassée par beau temps", "Doit respecter les limites du constructeur", "Ne concerne que le carburant", "Est sans effet sur la stabilité"], correct: 1, explanation: "Les limites prévues pour le navire doivent être respectées." },
-      { id: "sec-6", question: "La limite de 5 nœuds dans les 300 m :", choices: ["S'applique seulement s'il y a des baigneurs visibles", "Est la règle générale, hors chenaux et arrêtés locaux", "Autorise 20 nœuds le matin", "Ne concerne que les voiliers"], correct: 1, explanation: "C'est une règle générale de prudence littorale, avec des régimes particuliers possibles dans les chenaux." },
+      { id: "sec-6", question: "Dans la bande des 300 m, la règle à retenir est :", choices: ["5 nœuds seulement s'il y a des baigneurs visibles", "Rester à moins de 5 nœuds et utiliser les chenaux prévus pour les engins à moteur", "20 nœuds dans les chenaux", "Aucune limite pour les voiliers"], correct: 1, explanation: "Dans les 300 m, on reste à moins de 5 nœuds et on emprunte les chenaux prévus lorsqu'ils existent. La réglementation locale peut être plus restrictive." },
+      { id: "sec-7", question: "Un bateau de catégorie de conception C est conçu notamment pour :", choices: ["Force 6 Beaufort au maximum et vagues jusqu'à 2 m", "Force 12 sans limite de vague", "Uniquement les eaux intérieures", "Naviguer automatiquement jusqu'à 6 milles"], correct: 0, explanation: "La catégorie C correspond à des conditions jusqu'à force 6 incluse et une hauteur significative de vague jusqu'à 2 m. Elle ne fixe pas une distance d'un abri." },
+      { id: "sec-8", question: "Les catégories de conception CE A, B, C et D indiquent principalement :", choices: ["La distance maximale du port", "Les conditions de vent et de vagues pour lesquelles le bateau a été conçu", "Le nombre de permis à bord", "La fréquence VHF"], correct: 1, explanation: "Les catégories de conception portent sur les conditions environnementales de conception, pas sur la limite géographique du permis." },
+      { id: "sec-9", question: "À quelle distance minimale faut-il se tenir d'un pavillon signalant des plongeurs ?", choices: ["10 m", "25 m", "50 m", "100 m"], correct: 3, explanation: "Il faut rester à au moins 100 m des pavillons signalant des plongeurs." },
+      { id: "sec-10", question: "Le second coupe-circuit filaire d'un hors-bord concerné doit être :", choices: ["Caché dans un coffre fermé à clé", "Rapidement et facilement accessible, avec son emplacement connu à bord", "Conservé à terre", "Remplacé par une pince permanente"], correct: 1, explanation: "Le second coupe-circuit permet de redémarrer pour récupérer un conducteur tombé à l'eau ; il doit être accessible et son emplacement connu." },
     ],
   },
   {
@@ -818,7 +848,7 @@ export const chapters: Chapter[] = [
         title: "Équipement individuel de flottabilité",
         definition: "L'EIF doit être adapté à la morphologie, au poids, et au niveau de performance exigé par la zone. Accessible immédiatement s'il n'est pas porté.",
         body: [
-          "Règle générale enseignée : jusqu'à 2 milles, niveau 50 ; de 2 à 6 milles, niveau 100. Les enfants et personnes de faible masse ont des exigences spécifiques : un adulte 100 mal sanglé sur un enfant est dangereux.",
+          "Règle générale : jusqu'à 2 milles, niveau de performance 50 ; de 2 à moins de 6 milles, niveau 100 par personne. En côtier, l'EIF 100 n'est toutefois pas exigé pour une personne sachant nager qui porte effectivement soit un EIF de niveau 50, soit une combinaison conforme apportant au moins 50 N de flottabilité intrinsèque avec les éléments de visibilité prévus. L'équipement doit toujours être adapté à la morphologie de l'utilisateur.",
           "Gilet automatique : vérifier la cartouche, la date, le déclencheur. Gonflable hors d'usage = tu n'as pas d'EIF. Le porter par mer fraîche, de nuit, ou si tu ne nages pas, n'est pas « excessif ».",
         ],
         remember: [
@@ -870,7 +900,7 @@ export const chapters: Chapter[] = [
     questions: [
       { id: "mat-1", question: "À moins de 2 milles d'un abri, on parle principalement d'armement :", choices: ["Hauturier", "Basique", "Océanique", "Fluvial"], correct: 1, explanation: "La Division 240 distingue notamment le matériel basique pour la navigation à moins de 2 milles d'un abri." },
       { id: "mat-2", question: "De 2 à 6 milles d'un abri, le matériel est dit :", choices: ["Basique seulement", "Côtier", "Grande plaisance", "Sans catégorie"], correct: 1, explanation: "De 2 à 6 milles, on applique l'armement côtier." },
-      { id: "mat-3", question: "Le niveau de performance général d'un EIF de 2 à 6 milles est au moins :", choices: ["25", "50", "100", "300"], correct: 2, explanation: "La règle générale de la Division 240 prévoit 100 pour la zone de 2 à 6 milles." },
+      { id: "mat-3", question: "Dans le cas général, le niveau de performance d'un EIF de 2 à moins de 6 milles est au moins :", choices: ["25", "50", "100", "300"], correct: 2, explanation: "La règle générale prévoit un EIF de niveau 100 par personne en côtier. Il existe une exception pour une personne sachant nager qui porte effectivement un EIF 50 ou une combinaison conforme répondant aux conditions de la Division 240." },
       { id: "mat-4", question: "L'armement côtier comprend notamment :", choices: ["Trois feux rouges à main", "Une combinaison de plongée pour chaque bateau", "Un radar obligatoire", "Un pilote automatique obligatoire"], correct: 0, explanation: "Les trois feux rouges à main figurent parmi les compléments côtiers.", image: "/images/materiel-securite.jpg", imageAlt: "Matériel de sécurité côtier." },
       { id: "mat-5", question: "Un gilet de sauvetage doit être choisi principalement selon :", choices: ["La couleur du bateau", "La morphologie et la zone de navigation", "Le prix", "La puissance du moteur uniquement"], correct: 1, explanation: "Il doit être adapté à l'utilisateur et au niveau de performance requis." },
     ],
@@ -890,8 +920,8 @@ export const chapters: Chapter[] = [
     ],
     glossary: [
       { term: "Option côtière", meaning: "Conduite en mer jusqu'à 6 milles d'un abri, moteur > 4,5 kW." },
-      { term: "Titre de navigation", meaning: "Document d'identité du navire (francisation ou équivalent selon le registre)." },
-      { term: "CRR", meaning: "Certificat pour utiliser une VHF du service mobile maritime (règles à vérifier)." },
+      { term: "Titre de navigation", meaning: "Le certificat d’enregistrement est aujourd’hui le titre de navigation courant des navires de plaisance enregistrés en France ; les anciens titres encore valides peuvent continuer à être présentés." },
+      { term: "CRR", meaning: "Certificat restreint de radiotéléphoniste. En eaux territoriales françaises, le permis plaisance maritime permet l’utilisation d’une VHF fixe ou ASN ; à l’étranger, le CRR est requis. Une VHF portative ≤ 6 W sans ASN ne nécessite pas de qualification radio en France." },
     ],
     sections: [
       {
@@ -930,14 +960,14 @@ export const chapters: Chapter[] = [
         title: "Documents à bord",
         definition: "On distingue le titre du conducteur, les papiers du navire, les documents radio s'il y a VHF, et les documents nautiques exigés par l'armement.",
         body: [
-          "Conducteur : le permis plaisance correspondant à la zone et à la machine. Navire : titre de navigation (acte de francisation ou titre équivalent selon l'immatriculation et la taille). Les formalités exactes dépendent du registre ; en cas de doute, administration et textes officiels.",
-          "Radio : si une VHF du service mobile maritime est installée, licence de station et, pour l'utiliser, généralement un CRR (certificat restreint de radiotéléphoniste). Les usages de VHF portable font l'objet de précisions : ne pas inventer une exemption.",
+          "Conducteur : le permis plaisance correspondant à la zone et à la machine. Navire : le certificat d'enregistrement constitue aujourd'hui le titre de navigation courant pour les navires de plaisance enregistrés en France. Les anciennes cartes de circulation ou actes de francisation encore valides peuvent rester utilisables. Les formalités exactes dépendent du navire et de son enregistrement.",
+          "Radio : la station radio du navire doit disposer de la licence radiomaritime requise. En eaux territoriales françaises, le permis plaisance maritime permet d'utiliser une VHF fixe ou une VHF portative avec ASN sans CRR supplémentaire. Une VHF portative d'au plus 6 W sans ASN peut être utilisée en France sans qualification radio. À l'étranger, le CRR est requis. Ne pas confondre la licence de la station et la qualification de l'opérateur.",
           "Nautiques (surtout armement côtier) : cartes officielles de la zone tenues à jour, RIPAM ou résumé conforme, document de balisage, moyen de connaître marées et coefficients hors Méditerranée. Support papier ou électronique s'ils restent consultables dans les conditions prévues.",
-          "Cas concret avant d'appareiller : permis dans la pochette, papiers du bateau, VHF licenciée et CRR si tu l'utilises, cartes de la zone, marée du jour. Un contrôle en mer porte souvent là-dessus autant que sur les gilets.",
+          "Cas concret avant d'appareiller : permis dans la pochette, certificat d'enregistrement ou ancien titre encore valide, licence radiomaritime si la station VHF l'exige, qualification adaptée à la zone de navigation, cartes de la zone et marée du jour. En eaux françaises, ton permis maritime suffit pour la qualification opérateur d'une VHF fixe/ASN ; à l'étranger, pense au CRR.",
         ],
         remember: [
           "Permis du conducteur + titre du navire.",
-          "VHF installée : licence + CRR (cas général enseigné).",
+          "VHF : distinguer licence de station et qualification opérateur. En France, permis maritime = qualification suffisante pour VHF fixe/ASN ; à l’étranger, CRR requis.",
           "Côtier : cartes, RIPAM, balisage, marées (hors Méditerranée).",
         ],
         traps: [
@@ -954,7 +984,8 @@ export const chapters: Chapter[] = [
       { id: "per-5", question: "Qui décide finalement si les conditions permettent de partir en sécurité ?", choices: ["Le vendeur du bateau", "Le chef de bord", "Le GPS", "La météo seule"], correct: 1, explanation: "Le chef de bord doit prendre la décision en intégrant l'ensemble des paramètres." },
       { id: "per-6", question: "Le permis plaisance devient obligatoire pour un bateau de plaisance à moteur lorsque la puissance propulsive est supérieure à :", choices: ["2 kW", "4,5 kW", "10 kW", "20 kW"], correct: 1, explanation: "Le seuil réglementaire est supérieur à 4,5 kW, soit 6 chevaux." },
       { id: "per-7", question: "Parmi les documents nautiques de l'armement côtier, on trouve notamment :", choices: ["Un contrat de location saisonnière uniquement", "Les cartes marines officielles de la zone tenues à jour", "Un atlas routier", "Un permis voiture"], correct: 1, explanation: "Cartes officielles à jour, RIPAM et document de balisage font partie des exigences côtières enseignées." },
-      { id: "per-8", question: "Pour utiliser une VHF marine du service mobile maritime, on exige généralement :", choices: ["Aucun titre", "Un CRR (certificat restreint de radiotéléphoniste)", "Un permis hauturier obligatoire", "Un diplôme de capitaine"], correct: 1, explanation: "Le CRR est le titre radio généralement enseigné pour la VHF, en plus de la licence de station si l'appareil est installé." },
+      { id: "per-8", question: "En eaux territoriales françaises, pour utiliser une VHF fixe ou une VHF portative avec ASN à bord d’un bateau de plaisance, le titulaire du permis plaisance maritime :", choices: ["Doit obligatoirement ajouter un CRR", "Dispose déjà de la qualification opérateur nécessaire", "Doit posséder le permis hauturier", "Ne peut jamais utiliser la VHF"], correct: 1, explanation: "En France, le permis plaisance maritime permet l’utilisation de la VHF fixe ou ASN sans CRR supplémentaire. La licence radiomaritime de la station reste une question distincte. À l’étranger, le CRR est requis." },
+      { id: "per-9", question: "À l’étranger, pour utiliser la VHF maritime de plaisance, le certificat généralement requis pour l’opérateur est :", choices: ["Le CRR", "Le permis automobile", "Aucun document", "Le permis hauturier uniquement"], correct: 0, explanation: "Le CRR est requis pour l’utilisation de la VHF maritime à l’étranger. Il ne faut pas le confondre avec la licence radiomaritime de la station." },
     ],
   },
   {
@@ -1015,15 +1046,15 @@ export const chapters: Chapter[] = [
       },
       {
         title: "SMDSM et sauvetage en mer (niveau permis)",
-        definition: "Le SMDSM (GMDSS) organise l'alerte et la diffusion de sécurité à l'échelle mondiale. Le côtier se situe typiquement en zone A1 : couverture VHF ASN des stations côtières.",
+        definition: "Le SMDSM (GMDSS) organise l’alerte et la diffusion de sécurité à l’échelle mondiale. Les zones A1 à A4 sont définies par la couverture des moyens d’alerte, pas par la limite de 6 milles du permis côtier.",
         body: [
-          "Zones (repères) : A1 = VHF ASN ; A2 = BLU/MF ASN au-delà ; A3 = satellitaire hors pôles ; A4 = pôles. Tu n'as pas à devenir radio-officier : retiens que tes 6 milles d'un abri relèvent de la logique côtière VHF, d'où l'intérêt d'une VHF ASN bien réglée.",
-          "En France, le CROSS (Gris-Nez, Jobourg, Corsen, Étel, La Garde, Antilles-Guyane, etc.) coordonne. Il déclenche SNSM, moyens d'État, navires sur zone. Le 196 est le numéro d'urgence mer depuis un mobile. Le 112 reste un secours terrestre ; en mer, 196 + VHF 16 sont les bons réflexes.",
+          "Zones : A1 = zone couverte par au moins une station côtière VHF assurant en continu l'alerte ASN ; A2 = hors A1, zone couverte par une station côtière MF assurant en continu l'alerte ASN ; A3 = hors A1/A2, zone couverte par un service mobile satellitaire reconnu permettant l'alerte continue ; A4 = hors A1/A2/A3. La frontière des 6 milles d'un abri du permis côtier ne définit aucune de ces zones.",
+          "En France, le CROSS coordonne les secours en mer et peut mobiliser SNSM, moyens d'État et navires sur zone. Depuis un navire équipé, la VHF canal 16 est le moyen à privilégier car l'alerte est entendue par les secours et les navires proches. Depuis le littoral pour une urgence en mer, le 196 permet de joindre les CROSS. Le 112 reste le numéro européen général d'urgence et peut relayer une alerte, mais il ne remplace pas la VHF 16 en mer.",
           "Moyens que tu peux rencontrer : VHF phonie, ASN, RLS/EPIRB (radiobalise, surtout au-delà du côtier), SART, NAVTEX pour les infos de sécurité. Au permis : connaître le principe (alerter vite, se faire localiser, écouter) plutôt que le détail technique de chaque boîte.",
           "Cas concret : voie d'eau à 3 milles. DISTRESS si VHF ASN, MAYDAY 16, gilets, pomper, préparer un moyen de flottabilité, donner une position claire. Ne pas quitter le bateau tant qu'il flotte, sauf s'il devient plus dangereux que l'eau.",
         ],
         remember: [
-          "Côtier ≈ zone A1 : VHF / ASN.",
+          "A1 = couverture VHF avec alerte ASN continue ; ce n’est pas une distance de 6 milles.",
           "CROSS + canal 16 + 196 (France).",
           "Fausse alerte : l'annuler tout de suite.",
         ],
@@ -1034,6 +1065,18 @@ export const chapters: Chapter[] = [
           { term: "SMDSM", meaning: "Système mondial de détresse et de sécurité en mer." },
           { term: "Zone A1", meaning: "Couverture d'au moins une station côtière VHF à ASN." },
           { term: "RLS", meaning: "Radiobalise de localisation des sinistres (EPIRB)." },
+        ],
+      },
+      {
+        title: "Anglais radio de base",
+        definition: "Le programme du permis demande quelques notions d'anglais utiles pour comprendre ou transmettre un message simple de sécurité.",
+        body: [
+          "Mots et expressions à reconnaître : THIS IS = ici / de la part de ; POSITION = position ; PERSONS ON BOARD = personnes à bord ; I REQUIRE ASSISTANCE = j'ai besoin d'assistance ; MAN OVERBOARD = homme à la mer ; FIRE = incendie ; TAKING WATER = voie d'eau ; STAND BY = restez en attente ; OVER = à vous.",
+          "En détresse, priorité à un message court et compréhensible : identité, position, nature du danger, assistance demandée et nombre de personnes à bord. L'alphabet phonétique aide à épeler un nom ou un indicatif.",
+        ],
+        remember: [
+          "POSITION = position. PERSONS ON BOARD = personnes à bord.",
+          "I REQUIRE ASSISTANCE = j'ai besoin d'assistance. OVER = à vous.",
         ],
       },
       {
@@ -1051,8 +1094,9 @@ export const chapters: Chapter[] = [
       { id: "vhf-3", question: "Le MMSI est :", choices: ["Une vitesse maximale", "Un identifiant numérique de station maritime", "Une carte marine", "Un type de gilet"], correct: 1, explanation: "Le MMSI identifie la station dans les systèmes numériques maritimes." },
       { id: "vhf-4", question: "Dans un MAYDAY, il faut notamment donner :", choices: ["La position", "Le prix du bateau", "La marque du moteur uniquement", "Son permis de conduire routier"], correct: 0, explanation: "La position est une information essentielle pour permettre l'intervention." },
       { id: "vhf-5", question: "La lettre B s'épelle en alphabet phonétique :", choices: ["Beta", "Bravo", "Baker", "Berlin"], correct: 1, explanation: "B = Bravo." },
-      { id: "vhf-6", question: "Le SMDSM, au niveau du permis côtier, se rattache surtout à la zone :", choices: ["A4 polaire", "A1, couverture VHF ASN", "Uniquement satellitaire", "Aucune zone"], correct: 1, explanation: "Les 6 milles d'un abri relèvent de la logique côtière A1 (stations VHF à ASN)." },
-      { id: "vhf-7", question: "En France, le numéro d'urgence maritime depuis un mobile est :", choices: ["15 uniquement", "196", "3617", "08 bateau"], correct: 1, explanation: "Le 196 joint les secours mer. Il complète la VHF canal 16, il ne la remplace pas si elle est disponible." },
+      { id: "vhf-6", question: "Dans le SMDSM, une zone A1 est :", choices: ["Une zone définie par les 6 milles du permis côtier", "Une zone couverte par au moins une station côtière VHF assurant en continu l’alerte ASN", "Une zone uniquement satellitaire", "Une zone réservée aux ports"], correct: 1, explanation: "A1 est définie par la couverture VHF/ASN d’une station côtière. Elle n’est pas définie par la limite de 6 milles du permis côtier." },
+      { id: "vhf-7", question: "En France, pour une urgence en mer depuis le littoral ou un téléphone mobile, le numéro dédié aux CROSS est :", choices: ["15 uniquement", "196", "3617", "08 bateau"], correct: 1, explanation: "Le 196 permet de joindre les CROSS. Depuis un navire équipé, la VHF canal 16 reste le moyen à privilégier." },
+      { id: "vhf-8", question: "En anglais radio, « PERSONS ON BOARD » signifie :", choices: ["Position du bateau", "Personnes à bord", "Moteur en panne", "Fin de message"], correct: 1, explanation: "PERSONS ON BOARD = personnes à bord, une information importante dans un message de détresse." },
     ],
   },
   {
@@ -1206,7 +1250,7 @@ export const chapters: Chapter[] = [
         title: "Marge de sécurité",
         definition: "On ne vise jamais une profondeur théorique égale au tirant d'eau.",
         body: [
-          "Houle, vague, assiette au moteur, sonde ancienne, vase, pression atmosphérique basse (surcote inverse parfois), erreur de lecture : tout mange de la marge. Dans une passe, on passe plutôt près de la pleine mer si le fond est juste.",
+          "Houle, vague, assiette au moteur, sonde ancienne, vase et erreur de lecture peuvent réduire la marge. La pression atmosphérique modifie aussi le niveau réel : une pression élevée tend à faire baisser le niveau par rapport à la prédiction, tandis qu'une pression basse tend à le relever (effet barométrique inverse). On ne calcule donc jamais une passe juste sans marge.",
         ],
         remember: ["Marge sous la quille = non négociable.", "Passe juste = plutôt près de PM, sans se jeter dans un courant ingérable."],
       },
@@ -1333,11 +1377,11 @@ export const chapters: Chapter[] = [
       },
       {
         title: "Pêche de loisir",
-        definition: "La pêche de loisir nourrit le pêcheur et sa famille dans le cadre réglementaire. La vente du produit est interdite.",
+        definition: "Les captures de pêche maritime de loisir sont destinées à la consommation du pêcheur et de sa famille : leur vente et leur colportage sont interdits, et l’achat de captures provenant de la pêche de loisir est également interdit.",
         body: [
           "Tailles minimales, quotas, repos biologiques, engins autorisés, marquage de certaines espèces, cantonnements : tout varie. On vérifie avant, on ne « fait comme le voisin ». Une zone Natura 2000 ou un cantonnement peut interdire jusqu'à la pêche à la ligne.",
         ],
-        remember: ["Vente interdite.", "Tailles et zones = à jour, locales."],
+        remember: ["Vente et colportage interdits ; ne pas acheter de captures issues de la pêche de loisir.", "Tailles, quotas, périodes et zones = à vérifier à jour."],
         traps: ["Pêcher dans un chenal ou une zone de baignade « parce que ça mord »."],
       },
       {

@@ -97,29 +97,30 @@ function Light({ cx, cy, color, r = 9 }: { cx: number; cy: number; color: string
 export function LightsPowerPlate({ caption }: PlateProps) {
   return (
     <figure className="exam-plate">
-      <svg viewBox="0 0 560 230" role="img" aria-label="Feux d'un navire à moteur faisant route : feu de tête de mât blanc, feu bâbord rouge, feu tribord vert, feu de poupe blanc.">
-        <rect width="560" height="230" rx="16" fill="#07151b" />
-        <text x="24" y="32" fill="#9cc0c7" fontSize="13" fontWeight="800">NAVIRE À MOTEUR — FAISANT ROUTE</text>
-        <g transform="translate(70 48)">
-          <text x="70" y="18" fill="#d7e6ea" fontSize="12">Face à face</text>
-          <polygon points="90,46 118,150 90,138 62,150" fill="#1d3c46" stroke="#4e6d76" />
-          <Light cx={90} cy={40} color="#f4f1de" r={8} />
-          <Light cx={64} cy={118} color="#e23b3b" />
-          <Light cx={116} cy={118} color="#1ea35a" />
-          <text x="8" y="176" fill="#e23b3b" fontSize="11">Bâbord rouge</text>
-          <text x="108" y="176" fill="#1ea35a" fontSize="11">Tribord vert</text>
+      <svg viewBox="0 0 620 240" role="img" aria-label="Feux d'un navire à moteur : vu de face, blanc de tête de mât avec rouge bâbord et vert tribord ; vu du travers bâbord, feu rouge et feu de tête de mât, sans feu de poupe.">
+        <rect width="620" height="240" rx="16" fill="#07151b" />
+        <text x="24" y="30" fill="#9cc0c7" fontSize="13" fontWeight="800">NAVIRE À MOTEUR — FAISANT ROUTE</text>
+        <g transform="translate(36 44)">
+          <text x="95" y="16" fill="#d7e6ea" fontSize="12" fontWeight="700">VU DE FACE</text>
+          <polygon points="96,42 126,150 96,138 66,150" fill="#1d3c46" stroke="#4e6d76" />
+          <Light cx={96} cy={36} color="#f4f1de" r={8} />
+          <Light cx={68} cy={118} color="#e23b3b" />
+          <Light cx={124} cy={118} color="#1ea35a" />
+          <text x="22" y="180" fill="#e23b3b" fontSize="11">Rouge = son bâbord</text>
+          <text x="112" y="180" fill="#1ea35a" fontSize="11">Vert = son tribord</text>
         </g>
-        <g transform="translate(300 48)">
-          <text x="40" y="18" fill="#d7e6ea" fontSize="12">Vu de bâbord</text>
-          <rect x="20" y="78" width="170" height="36" rx="16" fill="#1d3c46" stroke="#4e6d76" />
-          <polygon points="190,96 230,78 230,114" fill="#1d3c46" stroke="#4e6d76" />
-          <Light cx={118} cy={58} color="#f4f1de" r={8} />
-          <Light cx={70} cy={96} color="#e23b3b" />
-          <Light cx={28} cy={96} color="#f4f1de" r={7} />
-          <text x="8" y="176" fill="#f4f1de" fontSize="11">Poupe blanche + tête de mât + rouge</text>
+        <g transform="translate(300 44)">
+          <text x="74" y="16" fill="#d7e6ea" fontSize="12" fontWeight="700">VU DU TRAVERS BÂBORD</text>
+          <rect x="20" y="82" width="186" height="34" rx="16" fill="#1d3c46" stroke="#4e6d76" />
+          <polygon points="206,99 242,82 242,116" fill="#1d3c46" stroke="#4e6d76" />
+          <Light cx={126} cy={58} color="#f4f1de" r={8} />
+          <Light cx={84} cy={99} color="#e23b3b" />
+          <text x="22" y="150" fill="#e23b3b" fontSize="11">Feu de côté rouge</text>
+          <text x="22" y="168" fill="#f4f1de" fontSize="11">+ feu de tête de mât blanc</text>
+          <text x="22" y="190" fill="#e9b4ab" fontSize="11" fontWeight="700">Pas de feu de poupe au travers.</text>
         </g>
       </svg>
-      <figcaption>{caption ?? "Bâbord = rouge. Tribord = vert. Tête de mât et poupe = blanc."}</figcaption>
+      <figcaption>{caption ?? "Face : blanc + rouge + vert. Au travers bâbord : rouge + feu de tête de mât ; le feu de poupe n'est pas visible dans ce secteur."}</figcaption>
     </figure>
   );
 }
@@ -236,32 +237,24 @@ export function CardinalSchematic({ caption }: PlateProps) {
 }
 
 export function PortTrafficPlate({ caption }: PlateProps) {
+  const Signal = ({ x, colors, label, note }: { x: number; colors: string[]; label: string; note: string }) => (
+    <g transform={`translate(${x} 28)`}>
+      <text x="62" y="14" textAnchor="middle" fill="#d7e6ea" fontSize="11" fontWeight="800">{label}</text>
+      <rect x="44" y="30" width="36" height="126" rx="8" fill="#12262c" stroke="#4e6d76" />
+      {colors.map((color, i) => <circle key={`${label}-${i}`} cx="62" cy={52 + i * 36} r="12" fill={color} />)}
+      <text x="62" y="180" textAnchor="middle" fill="#c5dde2" fontSize="10">{note}</text>
+    </g>
+  );
   return (
     <figure className="exam-plate">
-      <svg viewBox="0 0 560 220" role="img" aria-label="Feux de trafic portuaire : trois rouges entrée interdite, deux verts entrée autorisée.">
-        <rect width="560" height="220" rx="16" fill="#07151b" />
-        <g transform="translate(50 28)">
-          <text x="0" y="16" fill="#e9b4ab" fontSize="12" fontWeight="800">ENTRÉE INTERDITE</text>
-          <rect x="48" y="36" width="36" height="118" rx="8" fill="#12262c" stroke="#4e6d76" />
-          <circle cx="66" cy="58" r="12" fill="#e23b3b" />
-          <circle cx="66" cy="90" r="12" fill="#e23b3b" />
-          <circle cx="66" cy="122" r="12" fill="#e23b3b" />
-          <text x="0" y="176" fill="#c5dde2" fontSize="12">3 feux rouges verticaux</text>
-        </g>
-        <g transform="translate(250 28)">
-          <text x="0" y="16" fill="#9cc0c7" fontSize="12" fontWeight="800">ENTRÉE AUTORISÉE</text>
-          <rect x="48" y="52" width="36" height="90" rx="8" fill="#12262c" stroke="#4e6d76" />
-          <circle cx="66" cy="78" r="12" fill="#1ea35a" />
-          <circle cx="66" cy="114" r="12" fill="#1ea35a" />
-          <text x="0" y="176" fill="#c5dde2" fontSize="12">2 feux verts verticaux</text>
-        </g>
-        <g transform="translate(430 70)">
-          <text x="0" y="0" fill="#f3d27a" fontSize="12" fontWeight="800">À confirmer</text>
-          <text x="0" y="22" fill="#c5dde2" fontSize="12">Documents du port</text>
-          <text x="0" y="42" fill="#c5dde2" fontSize="12">et Instructions nautiques</text>
-        </g>
+      <svg viewBox="0 0 620 230" role="img" aria-label="Signalisation principale AISM de trafic portuaire : trois rouges ne pas poursuivre, trois verts passage à sens unique, vert vert blanc passage à double sens.">
+        <rect width="620" height="230" rx="16" fill="#07151b" />
+        <Signal x={30} colors={["#e23b3b", "#e23b3b", "#e23b3b"]} label="3 ROUGES" note="NE PAS POURSUIVRE" />
+        <Signal x={220} colors={["#1ea35a", "#1ea35a", "#1ea35a"]} label="3 VERTS" note="PASSAGE · SENS UNIQUE" />
+        <Signal x={410} colors={["#1ea35a", "#1ea35a", "#f4f1de"]} label="VERT · VERT · BLANC" note="PASSAGE · DOUBLE SENS" />
+        <text x="310" y="220" textAnchor="middle" fill="#9cc0c7" fontSize="10">Vert-blanc-vert : poursuivre seulement après un ordre spécifique.</text>
       </svg>
-      <figcaption>{caption ?? "Trois rouges : entrée souvent interdite. Deux verts : entrée souvent autorisée. Toujours vérifier le port."}</figcaption>
+      <figcaption>{caption ?? "Trafic portuaire AISM : 3 rouges = ne pas poursuivre ; 3 verts = passage à sens unique ; vert-vert-blanc = passage dans les deux sens."}</figcaption>
     </figure>
   );
 }
